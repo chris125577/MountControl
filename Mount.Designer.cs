@@ -1,0 +1,1273 @@
+﻿namespace MountControl
+{
+    partial class ControlForm
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 0D);
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlForm));
+            this.btnChooser = new System.Windows.Forms.Button();
+            this.btnPark = new System.Windows.Forms.Button();
+            this.btnUnpark = new System.Windows.Forms.Button();
+            this.btnDisconnect = new System.Windows.Forms.Button();
+            this.btnInitialize = new System.Windows.Forms.Button();
+            this.AltText = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.AzText = new System.Windows.Forms.TextBox();
+            this.btnAbort = new System.Windows.Forms.Button();
+            this.btnNorth = new System.Windows.Forms.Button();
+            this.btnSouth = new System.Windows.Forms.Button();
+            this.btnWest = new System.Windows.Forms.Button();
+            this.btnEast = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.RAText = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.DECText = new System.Windows.Forms.TextBox();
+            this.statusbox = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.statustimer = new System.Windows.Forms.Timer(this.components);
+            this.GuideRateIP = new System.Windows.Forms.NumericUpDown();
+            this.JogValIP = new System.Windows.Forms.NumericUpDown();
+            this.btnTrackOn = new System.Windows.Forms.Button();
+            this.btnTrackOff = new System.Windows.Forms.Button();
+            this.LatitudeIP = new System.Windows.Forms.TextBox();
+            this.LongitudeIP = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.Application = new System.Windows.Forms.TabControl();
+            this.Control = new System.Windows.Forms.TabPage();
+            this.btnHome = new System.Windows.Forms.Button();
+            this.btnConnectDup = new System.Windows.Forms.Button();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.rain = new System.Windows.Forms.Label();
+            this.rainratetext = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.skytemptext = new System.Windows.Forms.TextBox();
+            this.btnDiscWeather = new System.Windows.Forms.Button();
+            this.btnConnectWeather = new System.Windows.Forms.Button();
+            this.label18 = new System.Windows.Forms.Label();
+            this.skyqtext = new System.Windows.Forms.TextBox();
+            this.cloud = new System.Windows.Forms.Label();
+            this.cloudtext = new System.Windows.Forms.TextBox();
+            this.dew = new System.Windows.Forms.Label();
+            this.dewpointtext = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.humidtext = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.pressuretext = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.temptext = new System.Windows.Forms.TextBox();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label10 = new System.Windows.Forms.Label();
+            this.btngraphsel = new System.Windows.Forms.ComboBox();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label23 = new System.Windows.Forms.Label();
+            this.DEC2Text = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.RA2text = new System.Windows.Forms.TextBox();
+            this.btnHome2 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label19 = new System.Windows.Forms.Label();
+            this.minus3 = new System.Windows.Forms.Button();
+            this.plus3 = new System.Windows.Forms.Button();
+            this.label17 = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label25 = new System.Windows.Forms.Label();
+            this.resetbtn = new System.Windows.Forms.Button();
+            this.btnConnWeather = new System.Windows.Forms.Button();
+            this.btnWeathChoose = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.btnConnectSetup = new System.Windows.Forms.Button();
+            this.elevate = new System.Windows.Forms.Label();
+            this.ElevationIP = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.GuideRateIP)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.JogValIP)).BeginInit();
+            this.Application.SuspendLayout();
+            this.Control.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // btnChooser
+            // 
+            this.btnChooser.BackColor = System.Drawing.Color.Black;
+            this.btnChooser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnChooser.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnChooser.Location = new System.Drawing.Point(108, 12);
+            this.btnChooser.Name = "btnChooser";
+            this.btnChooser.Size = new System.Drawing.Size(64, 23);
+            this.btnChooser.TabIndex = 1;
+            this.btnChooser.Text = "chooser";
+            this.btnChooser.UseVisualStyleBackColor = false;
+            this.btnChooser.Click += new System.EventHandler(this.choose_mount);
+            // 
+            // btnPark
+            // 
+            this.btnPark.BackColor = System.Drawing.Color.Black;
+            this.btnPark.FlatAppearance.BorderSize = 0;
+            this.btnPark.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPark.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnPark.Location = new System.Drawing.Point(21, 75);
+            this.btnPark.Name = "btnPark";
+            this.btnPark.Size = new System.Drawing.Size(60, 23);
+            this.btnPark.TabIndex = 3;
+            this.btnPark.Text = "park";
+            this.btnPark.UseVisualStyleBackColor = false;
+            this.btnPark.Click += new System.EventHandler(this.park_mount);
+            // 
+            // btnUnpark
+            // 
+            this.btnUnpark.BackColor = System.Drawing.Color.Black;
+            this.btnUnpark.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUnpark.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnUnpark.Location = new System.Drawing.Point(113, 75);
+            this.btnUnpark.Name = "btnUnpark";
+            this.btnUnpark.Size = new System.Drawing.Size(59, 23);
+            this.btnUnpark.TabIndex = 4;
+            this.btnUnpark.Text = "unpark";
+            this.btnUnpark.UseVisualStyleBackColor = false;
+            this.btnUnpark.Click += new System.EventHandler(this.unpark);
+            // 
+            // btnDisconnect
+            // 
+            this.btnDisconnect.BackColor = System.Drawing.Color.Black;
+            this.btnDisconnect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDisconnect.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnDisconnect.Location = new System.Drawing.Point(99, 17);
+            this.btnDisconnect.Name = "btnDisconnect";
+            this.btnDisconnect.Size = new System.Drawing.Size(85, 23);
+            this.btnDisconnect.TabIndex = 5;
+            this.btnDisconnect.Text = "disconnect";
+            this.btnDisconnect.UseVisualStyleBackColor = false;
+            this.btnDisconnect.Click += new System.EventHandler(this.disconnect_mount);
+            // 
+            // btnInitialize
+            // 
+            this.btnInitialize.BackColor = System.Drawing.Color.Black;
+            this.btnInitialize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInitialize.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnInitialize.Location = new System.Drawing.Point(191, 56);
+            this.btnInitialize.Name = "btnInitialize";
+            this.btnInitialize.Size = new System.Drawing.Size(64, 23);
+            this.btnInitialize.TabIndex = 6;
+            this.btnInitialize.Text = "set mount";
+            this.btnInitialize.UseVisualStyleBackColor = false;
+            this.btnInitialize.Click += new System.EventHandler(this.init_mount);
+            // 
+            // AltText
+            // 
+            this.AltText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.AltText.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.AltText.Location = new System.Drawing.Point(73, 106);
+            this.AltText.Name = "AltText";
+            this.AltText.Size = new System.Drawing.Size(76, 20);
+            this.AltText.TabIndex = 7;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label1.Location = new System.Drawing.Point(25, 109);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(41, 13);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "altitude";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label2.Location = new System.Drawing.Point(23, 139);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(43, 13);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "azimuth";
+            // 
+            // AzText
+            // 
+            this.AzText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.AzText.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.AzText.Location = new System.Drawing.Point(73, 136);
+            this.AzText.Name = "AzText";
+            this.AzText.Size = new System.Drawing.Size(76, 20);
+            this.AzText.TabIndex = 9;
+            // 
+            // btnAbort
+            // 
+            this.btnAbort.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnAbort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAbort.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAbort.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnAbort.Location = new System.Drawing.Point(205, 46);
+            this.btnAbort.Name = "btnAbort";
+            this.btnAbort.Size = new System.Drawing.Size(57, 23);
+            this.btnAbort.TabIndex = 11;
+            this.btnAbort.Text = "ABORT";
+            this.btnAbort.UseVisualStyleBackColor = false;
+            this.btnAbort.Click += new System.EventHandler(this.abort_mount);
+            // 
+            // btnNorth
+            // 
+            this.btnNorth.BackColor = System.Drawing.Color.Black;
+            this.btnNorth.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNorth.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnNorth.Location = new System.Drawing.Point(210, 136);
+            this.btnNorth.Name = "btnNorth";
+            this.btnNorth.Size = new System.Drawing.Size(25, 25);
+            this.btnNorth.TabIndex = 14;
+            this.btnNorth.Text = "N";
+            this.btnNorth.UseVisualStyleBackColor = false;
+            this.btnNorth.Click += new System.EventHandler(this.north);
+            // 
+            // btnSouth
+            // 
+            this.btnSouth.BackColor = System.Drawing.Color.Black;
+            this.btnSouth.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSouth.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnSouth.Location = new System.Drawing.Point(210, 189);
+            this.btnSouth.Name = "btnSouth";
+            this.btnSouth.Size = new System.Drawing.Size(25, 25);
+            this.btnSouth.TabIndex = 15;
+            this.btnSouth.Text = "S";
+            this.btnSouth.UseVisualStyleBackColor = false;
+            this.btnSouth.Click += new System.EventHandler(this.south);
+            // 
+            // btnWest
+            // 
+            this.btnWest.BackColor = System.Drawing.Color.Black;
+            this.btnWest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnWest.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnWest.Location = new System.Drawing.Point(183, 162);
+            this.btnWest.Name = "btnWest";
+            this.btnWest.Size = new System.Drawing.Size(25, 25);
+            this.btnWest.TabIndex = 16;
+            this.btnWest.Text = "W";
+            this.btnWest.UseVisualStyleBackColor = false;
+            this.btnWest.Click += new System.EventHandler(this.west);
+            // 
+            // btnEast
+            // 
+            this.btnEast.BackColor = System.Drawing.Color.Black;
+            this.btnEast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEast.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnEast.Location = new System.Drawing.Point(237, 162);
+            this.btnEast.Name = "btnEast";
+            this.btnEast.Size = new System.Drawing.Size(25, 25);
+            this.btnEast.TabIndex = 17;
+            this.btnEast.Text = "E";
+            this.btnEast.UseVisualStyleBackColor = false;
+            this.btnEast.Click += new System.EventHandler(this.east);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label4.Location = new System.Drawing.Point(45, 169);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(22, 13);
+            this.label4.TabIndex = 19;
+            this.label4.Text = "RA";
+            // 
+            // RAText
+            // 
+            this.RAText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.RAText.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.RAText.Location = new System.Drawing.Point(73, 166);
+            this.RAText.Name = "RAText";
+            this.RAText.Size = new System.Drawing.Size(76, 20);
+            this.RAText.TabIndex = 18;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label5.Location = new System.Drawing.Point(38, 199);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(29, 13);
+            this.label5.TabIndex = 21;
+            this.label5.Text = "DEC";
+            // 
+            // DECText
+            // 
+            this.DECText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.DECText.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.DECText.Location = new System.Drawing.Point(73, 196);
+            this.DECText.Name = "DECText";
+            this.DECText.Size = new System.Drawing.Size(76, 20);
+            this.DECText.TabIndex = 20;
+            // 
+            // statusbox
+            // 
+            this.statusbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.statusbox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.statusbox.Location = new System.Drawing.Point(73, 225);
+            this.statusbox.Name = "statusbox";
+            this.statusbox.Size = new System.Drawing.Size(191, 20);
+            this.statusbox.TabIndex = 22;
+            this.statusbox.WordWrap = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label3.Location = new System.Drawing.Point(31, 228);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(35, 13);
+            this.label3.TabIndex = 23;
+            this.label3.Text = "status";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label6.Location = new System.Drawing.Point(159, 109);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(46, 13);
+            this.label6.TabIndex = 24;
+            this.label6.Text = "jog (min)";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label7.Location = new System.Drawing.Point(11, 61);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(95, 13);
+            this.label7.TabIndex = 26;
+            this.label7.Text = "guide rate 0.1-1.0x";
+            // 
+            // statustimer
+            // 
+            this.statustimer.Enabled = true;
+            this.statustimer.Interval = 2000;
+            this.statustimer.Tick += new System.EventHandler(this.status_updates);
+            // 
+            // GuideRateIP
+            // 
+            this.GuideRateIP.BackColor = System.Drawing.Color.Black;
+            this.GuideRateIP.DecimalPlaces = 2;
+            this.GuideRateIP.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.GuideRateIP.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            131072});
+            this.GuideRateIP.Location = new System.Drawing.Point(108, 59);
+            this.GuideRateIP.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            65536});
+            this.GuideRateIP.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.GuideRateIP.Name = "GuideRateIP";
+            this.GuideRateIP.Size = new System.Drawing.Size(64, 20);
+            this.GuideRateIP.TabIndex = 27;
+            this.GuideRateIP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.GuideRateIP.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            // 
+            // JogValIP
+            // 
+            this.JogValIP.BackColor = System.Drawing.Color.Black;
+            this.JogValIP.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.JogValIP.Location = new System.Drawing.Point(214, 106);
+            this.JogValIP.Maximum = new decimal(new int[] {
+            120,
+            0,
+            0,
+            0});
+            this.JogValIP.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.JogValIP.Name = "JogValIP";
+            this.JogValIP.Size = new System.Drawing.Size(48, 20);
+            this.JogValIP.TabIndex = 28;
+            this.JogValIP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.JogValIP.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.JogValIP.ValueChanged += new System.EventHandler(this.jog);
+            // 
+            // btnTrackOn
+            // 
+            this.btnTrackOn.BackColor = System.Drawing.Color.Black;
+            this.btnTrackOn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTrackOn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnTrackOn.Location = new System.Drawing.Point(8, 46);
+            this.btnTrackOn.Name = "btnTrackOn";
+            this.btnTrackOn.Size = new System.Drawing.Size(85, 23);
+            this.btnTrackOn.TabIndex = 29;
+            this.btnTrackOn.Text = "tracking on";
+            this.btnTrackOn.UseVisualStyleBackColor = false;
+            this.btnTrackOn.Click += new System.EventHandler(this.track_on);
+            // 
+            // btnTrackOff
+            // 
+            this.btnTrackOff.BackColor = System.Drawing.Color.Black;
+            this.btnTrackOff.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTrackOff.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnTrackOff.Location = new System.Drawing.Point(100, 46);
+            this.btnTrackOff.Name = "btnTrackOff";
+            this.btnTrackOff.Size = new System.Drawing.Size(84, 23);
+            this.btnTrackOff.TabIndex = 30;
+            this.btnTrackOff.Text = "tracking off";
+            this.btnTrackOff.UseVisualStyleBackColor = false;
+            this.btnTrackOff.Click += new System.EventHandler(this.track_off);
+            // 
+            // LatitudeIP
+            // 
+            this.LatitudeIP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.LatitudeIP.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.LatitudeIP.Location = new System.Drawing.Point(108, 97);
+            this.LatitudeIP.Name = "LatitudeIP";
+            this.LatitudeIP.Size = new System.Drawing.Size(64, 20);
+            this.LatitudeIP.TabIndex = 31;
+            this.LatitudeIP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // LongitudeIP
+            // 
+            this.LongitudeIP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.LongitudeIP.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.LongitudeIP.Location = new System.Drawing.Point(108, 125);
+            this.LongitudeIP.Name = "LongitudeIP";
+            this.LongitudeIP.Size = new System.Drawing.Size(64, 20);
+            this.LongitudeIP.TabIndex = 32;
+            this.LongitudeIP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label8.Location = new System.Drawing.Point(45, 100);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(41, 13);
+            this.label8.TabIndex = 33;
+            this.label8.Text = "latitude";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label9.Location = new System.Drawing.Point(36, 128);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(50, 13);
+            this.label9.TabIndex = 34;
+            this.label9.Text = "longitude";
+            // 
+            // Application
+            // 
+            this.Application.Controls.Add(this.Control);
+            this.Application.Controls.Add(this.tabPage1);
+            this.Application.Controls.Add(this.tabPage4);
+            this.Application.Controls.Add(this.tabPage3);
+            this.Application.Controls.Add(this.tabPage2);
+            this.Application.Location = new System.Drawing.Point(0, 1);
+            this.Application.Name = "Application";
+            this.Application.SelectedIndex = 0;
+            this.Application.Size = new System.Drawing.Size(288, 309);
+            this.Application.TabIndex = 35;
+            // 
+            // Control
+            // 
+            this.Control.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.Control.Controls.Add(this.btnHome);
+            this.Control.Controls.Add(this.btnConnectDup);
+            this.Control.Controls.Add(this.JogValIP);
+            this.Control.Controls.Add(this.btnTrackOff);
+            this.Control.Controls.Add(this.label6);
+            this.Control.Controls.Add(this.btnDisconnect);
+            this.Control.Controls.Add(this.label3);
+            this.Control.Controls.Add(this.btnTrackOn);
+            this.Control.Controls.Add(this.statusbox);
+            this.Control.Controls.Add(this.btnPark);
+            this.Control.Controls.Add(this.label5);
+            this.Control.Controls.Add(this.btnUnpark);
+            this.Control.Controls.Add(this.DECText);
+            this.Control.Controls.Add(this.label4);
+            this.Control.Controls.Add(this.btnAbort);
+            this.Control.Controls.Add(this.RAText);
+            this.Control.Controls.Add(this.btnNorth);
+            this.Control.Controls.Add(this.btnEast);
+            this.Control.Controls.Add(this.AltText);
+            this.Control.Controls.Add(this.btnWest);
+            this.Control.Controls.Add(this.label1);
+            this.Control.Controls.Add(this.btnSouth);
+            this.Control.Controls.Add(this.AzText);
+            this.Control.Controls.Add(this.label2);
+            this.Control.Location = new System.Drawing.Point(4, 22);
+            this.Control.Name = "Control";
+            this.Control.Padding = new System.Windows.Forms.Padding(3);
+            this.Control.Size = new System.Drawing.Size(280, 283);
+            this.Control.TabIndex = 0;
+            this.Control.Text = "Mount";
+            // 
+            // btnHome
+            // 
+            this.btnHome.BackColor = System.Drawing.Color.Black;
+            this.btnHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHome.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnHome.Location = new System.Drawing.Point(205, 17);
+            this.btnHome.Name = "btnHome";
+            this.btnHome.Size = new System.Drawing.Size(57, 23);
+            this.btnHome.TabIndex = 34;
+            this.btnHome.Text = "home";
+            this.btnHome.UseVisualStyleBackColor = false;
+            this.btnHome.Click += new System.EventHandler(this.home_mount);
+            // 
+            // btnConnectDup
+            // 
+            this.btnConnectDup.BackColor = System.Drawing.Color.Black;
+            this.btnConnectDup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConnectDup.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnConnectDup.Location = new System.Drawing.Point(8, 17);
+            this.btnConnectDup.Name = "btnConnectDup";
+            this.btnConnectDup.Size = new System.Drawing.Size(85, 23);
+            this.btnConnectDup.TabIndex = 31;
+            this.btnConnectDup.Text = "connect";
+            this.btnConnectDup.UseVisualStyleBackColor = false;
+            this.btnConnectDup.Click += new System.EventHandler(this.connect_mount);
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.tabPage1.Controls.Add(this.rain);
+            this.tabPage1.Controls.Add(this.rainratetext);
+            this.tabPage1.Controls.Add(this.label16);
+            this.tabPage1.Controls.Add(this.skytemptext);
+            this.tabPage1.Controls.Add(this.btnDiscWeather);
+            this.tabPage1.Controls.Add(this.btnConnectWeather);
+            this.tabPage1.Controls.Add(this.label18);
+            this.tabPage1.Controls.Add(this.skyqtext);
+            this.tabPage1.Controls.Add(this.cloud);
+            this.tabPage1.Controls.Add(this.cloudtext);
+            this.tabPage1.Controls.Add(this.dew);
+            this.tabPage1.Controls.Add(this.dewpointtext);
+            this.tabPage1.Controls.Add(this.label15);
+            this.tabPage1.Controls.Add(this.humidtext);
+            this.tabPage1.Controls.Add(this.label14);
+            this.tabPage1.Controls.Add(this.pressuretext);
+            this.tabPage1.Controls.Add(this.label13);
+            this.tabPage1.Controls.Add(this.temptext);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(280, 283);
+            this.tabPage1.TabIndex = 2;
+            this.tabPage1.Text = "Weather";
+            // 
+            // rain
+            // 
+            this.rain.AutoSize = true;
+            this.rain.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.rain.Location = new System.Drawing.Point(148, 151);
+            this.rain.Name = "rain";
+            this.rain.Size = new System.Drawing.Size(45, 13);
+            this.rain.TabIndex = 51;
+            this.rain.Text = "rain rate";
+            // 
+            // rainratetext
+            // 
+            this.rainratetext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.rainratetext.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.rainratetext.Location = new System.Drawing.Point(200, 148);
+            this.rainratetext.Name = "rainratetext";
+            this.rainratetext.Size = new System.Drawing.Size(69, 20);
+            this.rainratetext.TabIndex = 50;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label16.Location = new System.Drawing.Point(155, 121);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(35, 13);
+            this.label16.TabIndex = 49;
+            this.label16.Text = "Sky C";
+            // 
+            // skytemptext
+            // 
+            this.skytemptext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.skytemptext.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.skytemptext.Location = new System.Drawing.Point(200, 118);
+            this.skytemptext.Name = "skytemptext";
+            this.skytemptext.Size = new System.Drawing.Size(69, 20);
+            this.skytemptext.TabIndex = 48;
+            // 
+            // btnDiscWeather
+            // 
+            this.btnDiscWeather.BackColor = System.Drawing.Color.Black;
+            this.btnDiscWeather.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDiscWeather.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnDiscWeather.Location = new System.Drawing.Point(200, 15);
+            this.btnDiscWeather.Name = "btnDiscWeather";
+            this.btnDiscWeather.Size = new System.Drawing.Size(69, 23);
+            this.btnDiscWeather.TabIndex = 47;
+            this.btnDiscWeather.Text = "disconnect";
+            this.btnDiscWeather.UseVisualStyleBackColor = false;
+            this.btnDiscWeather.Click += new System.EventHandler(this.disconnect_weather);
+            // 
+            // btnConnectWeather
+            // 
+            this.btnConnectWeather.BackColor = System.Drawing.Color.Black;
+            this.btnConnectWeather.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConnectWeather.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnConnectWeather.Location = new System.Drawing.Point(66, 15);
+            this.btnConnectWeather.Name = "btnConnectWeather";
+            this.btnConnectWeather.Size = new System.Drawing.Size(70, 23);
+            this.btnConnectWeather.TabIndex = 46;
+            this.btnConnectWeather.Text = "connect";
+            this.btnConnectWeather.UseVisualStyleBackColor = false;
+            this.btnConnectWeather.Click += new System.EventHandler(this.connect_weather);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label18.Location = new System.Drawing.Point(159, 91);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(31, 13);
+            this.label18.TabIndex = 45;
+            this.label18.Text = "SQM";
+            // 
+            // skyqtext
+            // 
+            this.skyqtext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.skyqtext.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.skyqtext.Location = new System.Drawing.Point(200, 88);
+            this.skyqtext.Name = "skyqtext";
+            this.skyqtext.Size = new System.Drawing.Size(69, 20);
+            this.skyqtext.TabIndex = 44;
+            // 
+            // cloud
+            // 
+            this.cloud.AutoSize = true;
+            this.cloud.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.cloud.Location = new System.Drawing.Point(157, 61);
+            this.cloud.Name = "cloud";
+            this.cloud.Size = new System.Drawing.Size(33, 13);
+            this.cloud.TabIndex = 43;
+            this.cloud.Text = "cloud";
+            // 
+            // cloudtext
+            // 
+            this.cloudtext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.cloudtext.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.cloudtext.Location = new System.Drawing.Point(200, 58);
+            this.cloudtext.Name = "cloudtext";
+            this.cloudtext.Size = new System.Drawing.Size(69, 20);
+            this.cloudtext.TabIndex = 42;
+            // 
+            // dew
+            // 
+            this.dew.AutoSize = true;
+            this.dew.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dew.Location = new System.Drawing.Point(5, 151);
+            this.dew.Name = "dew";
+            this.dew.Size = new System.Drawing.Size(53, 13);
+            this.dew.TabIndex = 41;
+            this.dew.Text = "dew point";
+            // 
+            // dewpointtext
+            // 
+            this.dewpointtext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dewpointtext.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dewpointtext.Location = new System.Drawing.Point(66, 148);
+            this.dewpointtext.Name = "dewpointtext";
+            this.dewpointtext.Size = new System.Drawing.Size(70, 20);
+            this.dewpointtext.TabIndex = 40;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label15.Location = new System.Drawing.Point(11, 121);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(45, 13);
+            this.label15.TabIndex = 39;
+            this.label15.Text = "humidity";
+            // 
+            // humidtext
+            // 
+            this.humidtext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.humidtext.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.humidtext.Location = new System.Drawing.Point(66, 118);
+            this.humidtext.Name = "humidtext";
+            this.humidtext.Size = new System.Drawing.Size(70, 20);
+            this.humidtext.TabIndex = 38;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label14.Location = new System.Drawing.Point(11, 91);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(47, 13);
+            this.label14.TabIndex = 37;
+            this.label14.Text = "pressure";
+            // 
+            // pressuretext
+            // 
+            this.pressuretext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.pressuretext.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.pressuretext.Location = new System.Drawing.Point(66, 88);
+            this.pressuretext.Name = "pressuretext";
+            this.pressuretext.Size = new System.Drawing.Size(70, 20);
+            this.pressuretext.TabIndex = 36;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label13.Location = new System.Drawing.Point(28, 61);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(30, 13);
+            this.label13.TabIndex = 35;
+            this.label13.Text = "temp";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // temptext
+            // 
+            this.temptext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.temptext.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.temptext.Location = new System.Drawing.Point(66, 58);
+            this.temptext.Name = "temptext";
+            this.temptext.Size = new System.Drawing.Size(70, 20);
+            this.temptext.TabIndex = 34;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.label10);
+            this.tabPage4.Controls.Add(this.btngraphsel);
+            this.tabPage4.Controls.Add(this.chart1);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(280, 283);
+            this.tabPage4.TabIndex = 4;
+            this.tabPage4.Text = "Graphs";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(18, 9);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(69, 13);
+            this.label10.TabIndex = 2;
+            this.label10.Text = "graph source";
+            // 
+            // btngraphsel
+            // 
+            this.btngraphsel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.btngraphsel.FormattingEnabled = true;
+            this.btngraphsel.Items.AddRange(new object[] {
+            "temp C",
+            "humidity %",
+            "dewpoint C",
+            "sky temp C",
+            "cloud cover %",
+            "SQM",
+            "pressure hPa",
+            "rain rate mm/h"});
+            this.btngraphsel.Location = new System.Drawing.Point(93, 6);
+            this.btngraphsel.Name = "btngraphsel";
+            this.btngraphsel.Size = new System.Drawing.Size(102, 21);
+            this.btngraphsel.TabIndex = 1;
+            this.btngraphsel.SelectedIndexChanged += new System.EventHandler(this.graphselect);
+            this.btngraphsel.Click += new System.EventHandler(this.graphselect);
+            // 
+            // chart1
+            // 
+            chartArea1.AxisX.LineWidth = 2;
+            chartArea1.AxisX.MajorGrid.Interval = 0D;
+            chartArea1.AxisX.MajorTickMark.Interval = 0D;
+            chartArea1.AxisY.LineWidth = 2;
+            chartArea1.AxisY.ScrollBar.Enabled = false;
+            chartArea1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            chartArea1.Name = "CloudCover";
+            this.chart1.ChartAreas.Add(chartArea1);
+            this.chart1.Location = new System.Drawing.Point(0, 33);
+            this.chart1.Name = "chart1";
+            series1.ChartArea = "CloudCover";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.IsVisibleInLegend = false;
+            series1.Name = "cloud";
+            series1.Points.Add(dataPoint1);
+            this.chart1.Series.Add(series1);
+            this.chart1.Size = new System.Drawing.Size(280, 244);
+            this.chart1.TabIndex = 0;
+            this.chart1.Text = "chart1";
+            this.chart1.Click += new System.EventHandler(this.graphselect);
+            this.chart1.DoubleClick += new System.EventHandler(this.graphselect);
+            this.chart1.MouseCaptureChanged += new System.EventHandler(this.graphselect);
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tabPage3.Controls.Add(this.label23);
+            this.tabPage3.Controls.Add(this.DEC2Text);
+            this.tabPage3.Controls.Add(this.label24);
+            this.tabPage3.Controls.Add(this.RA2text);
+            this.tabPage3.Controls.Add(this.btnHome2);
+            this.tabPage3.Controls.Add(this.button2);
+            this.tabPage3.Controls.Add(this.label22);
+            this.tabPage3.Controls.Add(this.label21);
+            this.tabPage3.Controls.Add(this.label20);
+            this.tabPage3.Controls.Add(this.button1);
+            this.tabPage3.Controls.Add(this.label19);
+            this.tabPage3.Controls.Add(this.minus3);
+            this.tabPage3.Controls.Add(this.plus3);
+            this.tabPage3.Controls.Add(this.label17);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(280, 283);
+            this.tabPage3.TabIndex = 3;
+            this.tabPage3.Text = "PoleMaster";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label23.Location = new System.Drawing.Point(142, 131);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(29, 13);
+            this.label23.TabIndex = 57;
+            this.label23.Text = "DEC";
+            // 
+            // DEC2Text
+            // 
+            this.DEC2Text.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.DEC2Text.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.DEC2Text.Location = new System.Drawing.Point(177, 128);
+            this.DEC2Text.Name = "DEC2Text";
+            this.DEC2Text.Size = new System.Drawing.Size(59, 20);
+            this.DEC2Text.TabIndex = 56;
+            this.DEC2Text.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label24.Location = new System.Drawing.Point(149, 101);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(22, 13);
+            this.label24.TabIndex = 55;
+            this.label24.Text = "RA";
+            // 
+            // RA2text
+            // 
+            this.RA2text.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.RA2text.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.RA2text.Location = new System.Drawing.Point(177, 98);
+            this.RA2text.Name = "RA2text";
+            this.RA2text.Size = new System.Drawing.Size(59, 20);
+            this.RA2text.TabIndex = 54;
+            this.RA2text.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // btnHome2
+            // 
+            this.btnHome2.BackColor = System.Drawing.Color.Black;
+            this.btnHome2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHome2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnHome2.Location = new System.Drawing.Point(30, 43);
+            this.btnHome2.Name = "btnHome2";
+            this.btnHome2.Size = new System.Drawing.Size(67, 23);
+            this.btnHome2.TabIndex = 53;
+            this.btnHome2.Text = "home";
+            this.btnHome2.UseVisualStyleBackColor = false;
+            this.btnHome2.Click += new System.EventHandler(this.home_mount);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(164, 187);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(54, 23);
+            this.button2.TabIndex = 52;
+            this.button2.Text = "return";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.ReturnMount);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label22.Location = new System.Drawing.Point(161, 171);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(83, 13);
+            this.label22.TabIndex = 51;
+            this.label22.Text = "Go back to start";
+            this.label22.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label21.Location = new System.Drawing.Point(27, 128);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(70, 13);
+            this.label21.TabIndex = 50;
+            this.label21.Text = "2 First Rotate";
+            this.label21.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label20.Location = new System.Drawing.Point(27, 171);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(88, 13);
+            this.label20.TabIndex = 49;
+            this.label20.Text = "3 Second Rotate";
+            this.label20.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(30, 187);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(54, 23);
+            this.button1.TabIndex = 48;
+            this.button1.Text = "slew 2";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Plus3Ra);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label19.Location = new System.Drawing.Point(27, 18);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(191, 13);
+            this.label19.TabIndex = 47;
+            this.label19.Text = "Home mount first (counterweight down)";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // minus3
+            // 
+            this.minus3.Location = new System.Drawing.Point(30, 144);
+            this.minus3.Name = "minus3";
+            this.minus3.Size = new System.Drawing.Size(54, 23);
+            this.minus3.TabIndex = 46;
+            this.minus3.Text = "slew 1";
+            this.minus3.UseVisualStyleBackColor = true;
+            this.minus3.Click += new System.EventHandler(this.Plus3Ra);
+            // 
+            // plus3
+            // 
+            this.plus3.Location = new System.Drawing.Point(30, 94);
+            this.plus3.Name = "plus3";
+            this.plus3.Size = new System.Drawing.Size(54, 23);
+            this.plus3.TabIndex = 45;
+            this.plus3.Text = "start posn.";
+            this.plus3.UseVisualStyleBackColor = true;
+            this.plus3.Click += new System.EventHandler(this.PMStart);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label17.Location = new System.Drawing.Point(27, 78);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(131, 13);
+            this.label17.TabIndex = 44;
+            this.label17.Text = "1 Move to starting position";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.tabPage2.Controls.Add(this.label25);
+            this.tabPage2.Controls.Add(this.resetbtn);
+            this.tabPage2.Controls.Add(this.btnConnWeather);
+            this.tabPage2.Controls.Add(this.btnWeathChoose);
+            this.tabPage2.Controls.Add(this.label12);
+            this.tabPage2.Controls.Add(this.label11);
+            this.tabPage2.Controls.Add(this.btnConnectSetup);
+            this.tabPage2.Controls.Add(this.elevate);
+            this.tabPage2.Controls.Add(this.ElevationIP);
+            this.tabPage2.Controls.Add(this.btnInitialize);
+            this.tabPage2.Controls.Add(this.label9);
+            this.tabPage2.Controls.Add(this.btnChooser);
+            this.tabPage2.Controls.Add(this.label8);
+            this.tabPage2.Controls.Add(this.label7);
+            this.tabPage2.Controls.Add(this.LongitudeIP);
+            this.tabPage2.Controls.Add(this.GuideRateIP);
+            this.tabPage2.Controls.Add(this.LatitudeIP);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(280, 283);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Setup";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label25.Location = new System.Drawing.Point(18, 234);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(110, 13);
+            this.label25.TabIndex = 44;
+            this.label25.Text = "Store ASCOM params";
+            // 
+            // resetbtn
+            // 
+            this.resetbtn.Location = new System.Drawing.Point(134, 229);
+            this.resetbtn.Name = "resetbtn";
+            this.resetbtn.Size = new System.Drawing.Size(64, 23);
+            this.resetbtn.TabIndex = 43;
+            this.resetbtn.Text = "initilize";
+            this.resetbtn.UseVisualStyleBackColor = true;
+            this.resetbtn.Click += new System.EventHandler(this.resetsensor);
+            // 
+            // btnConnWeather
+            // 
+            this.btnConnWeather.BackColor = System.Drawing.Color.Black;
+            this.btnConnWeather.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConnWeather.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnConnWeather.Location = new System.Drawing.Point(191, 192);
+            this.btnConnWeather.Name = "btnConnWeather";
+            this.btnConnWeather.Size = new System.Drawing.Size(64, 23);
+            this.btnConnWeather.TabIndex = 41;
+            this.btnConnWeather.Text = "connect";
+            this.btnConnWeather.UseVisualStyleBackColor = false;
+            this.btnConnWeather.Click += new System.EventHandler(this.connect_weather);
+            // 
+            // btnWeathChoose
+            // 
+            this.btnWeathChoose.BackColor = System.Drawing.Color.Black;
+            this.btnWeathChoose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnWeathChoose.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnWeathChoose.Location = new System.Drawing.Point(108, 192);
+            this.btnWeathChoose.Name = "btnWeathChoose";
+            this.btnWeathChoose.Size = new System.Drawing.Size(64, 23);
+            this.btnWeathChoose.TabIndex = 1;
+            this.btnWeathChoose.Text = "chooser";
+            this.btnWeathChoose.UseVisualStyleBackColor = false;
+            this.btnWeathChoose.Click += new System.EventHandler(this.choose_weather);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.Gold;
+            this.label12.Location = new System.Drawing.Point(38, 197);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(58, 16);
+            this.label12.TabIndex = 39;
+            this.label12.Text = "Weather";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.Gold;
+            this.label11.Location = new System.Drawing.Point(49, 17);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(43, 16);
+            this.label11.TabIndex = 38;
+            this.label11.Text = "Mount";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // btnConnectSetup
+            // 
+            this.btnConnectSetup.BackColor = System.Drawing.Color.Black;
+            this.btnConnectSetup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConnectSetup.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnConnectSetup.Location = new System.Drawing.Point(191, 12);
+            this.btnConnectSetup.Name = "btnConnectSetup";
+            this.btnConnectSetup.Size = new System.Drawing.Size(64, 23);
+            this.btnConnectSetup.TabIndex = 37;
+            this.btnConnectSetup.Text = "connect";
+            this.btnConnectSetup.UseVisualStyleBackColor = false;
+            this.btnConnectSetup.Click += new System.EventHandler(this.connect_mount);
+            // 
+            // elevate
+            // 
+            this.elevate.AutoSize = true;
+            this.elevate.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.elevate.Location = new System.Drawing.Point(30, 156);
+            this.elevate.Name = "elevate";
+            this.elevate.Size = new System.Drawing.Size(56, 13);
+            this.elevate.TabIndex = 36;
+            this.elevate.Text = "(elevation)";
+            // 
+            // ElevationIP
+            // 
+            this.ElevationIP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ElevationIP.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ElevationIP.Location = new System.Drawing.Point(108, 153);
+            this.ElevationIP.Name = "ElevationIP";
+            this.ElevationIP.Size = new System.Drawing.Size(64, 20);
+            this.ElevationIP.TabIndex = 35;
+            this.ElevationIP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // ControlForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(289, 301);
+            this.Controls.Add(this.Application);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(305, 340);
+            this.MinimumSize = new System.Drawing.Size(305, 340);
+            this.Name = "ControlForm";
+            this.Text = "Imaging Utility v.4.3";
+            this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.GuideRateIP)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.JogValIP)).EndInit();
+            this.Application.ResumeLayout(false);
+            this.Control.ResumeLayout(false);
+            this.Control.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+        private System.Windows.Forms.Button btnChooser;
+        private System.Windows.Forms.Button btnPark;
+        private System.Windows.Forms.Button btnUnpark;
+        private System.Windows.Forms.Button btnDisconnect;
+        private System.Windows.Forms.Button btnInitialize;
+        private System.Windows.Forms.TextBox AltText;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox AzText;
+        private System.Windows.Forms.Button btnAbort;
+        private System.Windows.Forms.Button btnNorth;
+        private System.Windows.Forms.Button btnSouth;
+        private System.Windows.Forms.Button btnWest;
+        private System.Windows.Forms.Button btnEast;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox RAText;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox DECText;
+        private System.Windows.Forms.TextBox statusbox;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Timer statustimer;
+        private System.Windows.Forms.NumericUpDown GuideRateIP;
+        private System.Windows.Forms.NumericUpDown JogValIP;
+        private System.Windows.Forms.Button btnTrackOn;
+        private System.Windows.Forms.Button btnTrackOff;
+        private System.Windows.Forms.TextBox LatitudeIP;
+        private System.Windows.Forms.TextBox LongitudeIP;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TabControl Application;
+        private System.Windows.Forms.TabPage Control;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Label elevate;
+        private System.Windows.Forms.TextBox ElevationIP;
+        private System.Windows.Forms.Button btnConnectDup;
+        private System.Windows.Forms.Button btnHome;
+        private System.Windows.Forms.Button btnConnectSetup;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button btnConnWeather;
+        private System.Windows.Forms.Button btnWeathChoose;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox temptext;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox skyqtext;
+        private System.Windows.Forms.Label cloud;
+        private System.Windows.Forms.TextBox cloudtext;
+        private System.Windows.Forms.Label dew;
+        private System.Windows.Forms.TextBox dewpointtext;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox humidtext;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox pressuretext;
+        private System.Windows.Forms.Button btnDiscWeather;
+        private System.Windows.Forms.Button btnConnectWeather;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox skytemptext;
+        private System.Windows.Forms.Label rain;
+        private System.Windows.Forms.TextBox rainratetext;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Button minus3;
+        private System.Windows.Forms.Button plus3;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Button btnHome2;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.TextBox DEC2Text;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.TextBox RA2text;
+        private System.Windows.Forms.Button resetbtn;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox btngraphsel;
+    }
+}
+
