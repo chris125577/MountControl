@@ -96,13 +96,7 @@
             this.DEC2Text = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
             this.RA2text = new System.Windows.Forms.TextBox();
-            this.btnHome2 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label19 = new System.Windows.Forms.Label();
             this.minus3 = new System.Windows.Forms.Button();
             this.plus3 = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
@@ -116,6 +110,7 @@
             this.btnConnectSetup = new System.Windows.Forms.Button();
             this.elevate = new System.Windows.Forms.Label();
             this.ElevationIP = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.GuideRateIP)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.JogValIP)).BeginInit();
             this.Application.SuspendLayout();
@@ -854,17 +849,12 @@
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tabPage3.Controls.Add(this.label19);
             this.tabPage3.Controls.Add(this.label23);
             this.tabPage3.Controls.Add(this.DEC2Text);
             this.tabPage3.Controls.Add(this.label24);
             this.tabPage3.Controls.Add(this.RA2text);
-            this.tabPage3.Controls.Add(this.btnHome2);
-            this.tabPage3.Controls.Add(this.button2);
-            this.tabPage3.Controls.Add(this.label22);
             this.tabPage3.Controls.Add(this.label21);
-            this.tabPage3.Controls.Add(this.label20);
-            this.tabPage3.Controls.Add(this.button1);
-            this.tabPage3.Controls.Add(this.label19);
             this.tabPage3.Controls.Add(this.minus3);
             this.tabPage3.Controls.Add(this.plus3);
             this.tabPage3.Controls.Add(this.label17);
@@ -915,90 +905,24 @@
             this.RA2text.TabIndex = 54;
             this.RA2text.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // btnHome2
-            // 
-            this.btnHome2.BackColor = System.Drawing.Color.Black;
-            this.btnHome2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHome2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnHome2.Location = new System.Drawing.Point(30, 43);
-            this.btnHome2.Name = "btnHome2";
-            this.btnHome2.Size = new System.Drawing.Size(67, 23);
-            this.btnHome2.TabIndex = 53;
-            this.btnHome2.Text = "home";
-            this.btnHome2.UseVisualStyleBackColor = false;
-            this.btnHome2.Click += new System.EventHandler(this.home_mount);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(164, 187);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(54, 23);
-            this.button2.TabIndex = 52;
-            this.button2.Text = "return";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.ReturnMount);
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label22.Location = new System.Drawing.Point(161, 171);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(83, 13);
-            this.label22.TabIndex = 51;
-            this.label22.Text = "Go back to start";
-            this.label22.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
             // label21
             // 
             this.label21.AutoSize = true;
             this.label21.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label21.Location = new System.Drawing.Point(27, 128);
+            this.label21.Location = new System.Drawing.Point(27, 147);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(70, 13);
+            this.label21.Size = new System.Drawing.Size(82, 13);
             this.label21.TabIndex = 50;
-            this.label21.Text = "2 First Rotate";
+            this.label21.Text = "2) rotate 45 deg";
             this.label21.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label20.Location = new System.Drawing.Point(27, 171);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(88, 13);
-            this.label20.TabIndex = 49;
-            this.label20.Text = "3 Second Rotate";
-            this.label20.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(30, 187);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(54, 23);
-            this.button1.TabIndex = 48;
-            this.button1.Text = "slew 2";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Plus3Ra);
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label19.Location = new System.Drawing.Point(27, 18);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(191, 13);
-            this.label19.TabIndex = 47;
-            this.label19.Text = "Home mount first (counterweight down)";
-            this.label19.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // minus3
             // 
-            this.minus3.Location = new System.Drawing.Point(30, 144);
+            this.minus3.Location = new System.Drawing.Point(30, 163);
             this.minus3.Name = "minus3";
-            this.minus3.Size = new System.Drawing.Size(54, 23);
+            this.minus3.Size = new System.Drawing.Size(60, 30);
             this.minus3.TabIndex = 46;
-            this.minus3.Text = "slew 1";
+            this.minus3.Text = "45 deg";
             this.minus3.UseVisualStyleBackColor = true;
             this.minus3.Click += new System.EventHandler(this.Plus3Ra);
             // 
@@ -1006,9 +930,9 @@
             // 
             this.plus3.Location = new System.Drawing.Point(30, 94);
             this.plus3.Name = "plus3";
-            this.plus3.Size = new System.Drawing.Size(54, 23);
+            this.plus3.Size = new System.Drawing.Size(60, 30);
             this.plus3.TabIndex = 45;
-            this.plus3.Text = "start posn.";
+            this.plus3.Text = "start";
             this.plus3.UseVisualStyleBackColor = true;
             this.plus3.Click += new System.EventHandler(this.PMStart);
             // 
@@ -1018,9 +942,9 @@
             this.label17.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label17.Location = new System.Drawing.Point(27, 78);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(131, 13);
+            this.label17.Size = new System.Drawing.Size(92, 13);
             this.label17.TabIndex = 44;
-            this.label17.Text = "1 Move to starting position";
+            this.label17.Text = "1) starting position";
             this.label17.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // tabPage2
@@ -1153,6 +1077,17 @@
             this.ElevationIP.TabIndex = 35;
             this.ElevationIP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label19.Location = new System.Drawing.Point(27, 34);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(138, 13);
+            this.label19.TabIndex = 58;
+            this.label19.Text = "PoleMaster/SharpCap utility";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // ControlForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1164,7 +1099,7 @@
             this.MaximumSize = new System.Drawing.Size(305, 340);
             this.MinimumSize = new System.Drawing.Size(305, 340);
             this.Name = "ControlForm";
-            this.Text = "Imaging Utility v.4.3";
+            this.Text = "Imaging Utility v.4.4";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.GuideRateIP)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.JogValIP)).EndInit();
@@ -1248,16 +1183,10 @@
         private System.Windows.Forms.Label rain;
         private System.Windows.Forms.TextBox rainratetext;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Button minus3;
         private System.Windows.Forms.Button plus3;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Button btnHome2;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.TextBox DEC2Text;
         private System.Windows.Forms.Label label24;
@@ -1268,6 +1197,7 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox btngraphsel;
+        private System.Windows.Forms.Label label19;
     }
 }
 

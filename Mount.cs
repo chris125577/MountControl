@@ -24,6 +24,7 @@ using System.Linq;
 // v3.6 - moving to DEC90 was problem with RA accuracy, now 85
 // v4.0 - graph of environment data
 // v4.3 - updated graph direction and added offset offset for sky temp
+// v4.4 - added tracking on after polemaster actions, also trying out move axis alternative
 
 namespace MountControl
 {
@@ -34,7 +35,7 @@ namespace MountControl
         private ObservingConditions weather; // ASCOM weather
         private string mountId, weatherId;
         private double jogvalue = 1; // minutes of arc
-        private double ra, dec, az, alt, PMstart, PMRA, ra_rate, dec_rate;
+        private double ra, dec, az, alt;
         private double longitude = 0.6162;  // default value for SWF
         private double latitude = 51.6387;   // default value for SWF
         private double elevation = 10.0;   // default value for SWF
@@ -74,7 +75,6 @@ namespace MountControl
             btnDisconnect.ForeColor = Color.Gray;
             btnDiscWeather.ForeColor = Color.Gray;
             btnHome.ForeColor = Color.Gray;
-            btnHome2.ForeColor = Color.Gray;
             btnAbort.ForeColor = Color.Gray;
             btnPark.ForeColor = Color.Gray;
             btnUnpark.ForeColor = Color.Gray;
@@ -180,7 +180,6 @@ namespace MountControl
                     btnDisconnect.BackColor = Color.DarkRed;
                     btnDisconnect.ForeColor = Color.LightGray;
                     btnHome.ForeColor = Color.LightGray;
-                    btnHome2.ForeColor = Color.LightGray;
                     btnAbort.ForeColor = Color.Black;
                     btnPark.ForeColor = Color.LightGray;
                     btnUnpark.ForeColor = Color.LightGray;
@@ -250,7 +249,6 @@ namespace MountControl
                     mountconnected = false;
                     statusbox.Text = "not connected";
                     btnHome.ForeColor = Color.Gray;
-                    btnHome2.ForeColor = Color.Gray;
                     btnAbort.ForeColor = Color.Gray;
                     btnPark.ForeColor = Color.Gray;
                     btnUnpark.ForeColor = Color.Gray;
@@ -285,19 +283,10 @@ namespace MountControl
                 if (mount.Connected)
                 {
                     double guiderate;
-                    if(mountId=="ASCOM.HUBOI.Telescope")
-                    {
-                        System.Windows.Forms.MessageBox.Show("mount does not support UTC update");
-                        System.Windows.Forms.MessageBox.Show("mount does not support elevation update");
-                        //mount.CommandString(":SL10:00:00#", true);  //test
-                    }
-                    else
-                    {
-                        mount.UTCDate = (System.DateTime.UtcNow);
-                        System.Windows.Forms.MessageBox.Show("UTC time set");
-                        mount.SiteElevation = Convert.ToDouble(ElevationIP.Text);
-                        System.Windows.Forms.MessageBox.Show("elevation set");
-                    }
+                    mount.UTCDate = (System.DateTime.UtcNow);
+                    System.Windows.Forms.MessageBox.Show("UTC time set");
+                    mount.SiteElevation = Convert.ToDouble(ElevationIP.Text);
+                    System.Windows.Forms.MessageBox.Show("elevation set");
                     guiderate = sidereal * (double)(GuideRateIP.Value) ;  // calculate guide rate
 
                     if (mount.CanSetGuideRates) mount.GuideRateDeclination = guiderate;
@@ -521,8 +510,6 @@ namespace MountControl
                     dec = mount.Declination;
                     alt = mount.Altitude;
                     az = mount.Azimuth;
-                    ra_rate = mount.RightAscensionRate;
-                    dec_rate = mount.DeclinationRate;
                     DECText.Text = Math.Round(dec, 2).ToString();
                     DEC2Text.Text = Math.Round(dec, 2).ToString();
                     RAText.Text = Math.Round(ra, 2).ToString();
@@ -534,8 +521,7 @@ namespace MountControl
                 {
                     statusbox.Text = "Homed";
                     btnHome.BackColor = Color.DarkGreen;
-                    btnHome2.BackColor = Color.DarkGreen;
-                    btnPark.ForeColor = Color.LightGray;
+                     btnPark.ForeColor = Color.LightGray;
                     btnPark.BackColor = Color.Black;
                 }
                 else if (mount.AtPark)
@@ -547,13 +533,11 @@ namespace MountControl
                     btnTrackOn.ForeColor = Color.Gray;
                     btnTrackOn.BackColor = Color.Black;
                     btnHome.BackColor = Color.Black;
-                    btnHome2.BackColor = Color.Black;
                 }
                 else if (mount.Slewing)
                 {
                     statusbox.Text = "Slewing";
-                    btnHome.BackColor = Color.Black;
-                    btnHome2.BackColor = Color.Black;
+                    btnHome.BackColor = Color.Black;                    
                 }
 
                 else if (mount.Tracking)
@@ -562,7 +546,6 @@ namespace MountControl
                     btnTrackOn.ForeColor = Color.Black;
                     btnTrackOn.BackColor = Color.DarkGreen;
                     btnHome.BackColor = Color.Black;
-                    btnHome2.BackColor = Color.Black;
                 }
                 else
                 {
@@ -582,35 +565,25 @@ namespace MountControl
         {
             try
             {
-                double RA;
                 if (mount.Connected)                  
                 {
                     if (mount.AtPark) mount.Unpark();
                     if (!mount.Slewing)
                     {
-                        RA = mount.RightAscension;  
-                        if (mount.SiteLatitude >= 0) // test for hemisphere
-                        {
-                            mount.SlewToCoordinates(RA, 85.0); // move off dec 90
-                            if (RA >= 21.0) RA -= 24.0;
-                            RA += 3.0; 
-                            System.Windows.Forms.MessageBox.Show("slewing to RA " + Math.Round(RA, 2).ToString()+ " DEC 85");        
-                            mount.SlewToCoordinates(RA, 85.0);
-                            btnHome.BackColor = Color.Black;
-                            btnHome2.BackColor = Color.Black;
-                        }
-                        else
-                        {
-                            mount.SlewToCoordinates(RA, -85.0); // move off dec 90
-                            if (RA >= 21.0) RA -= 24.0;
-                            RA += 3.0; 
-                            System.Windows.Forms.MessageBox.Show("slewing to RA " + Math.Round(RA, 2).ToString() + " DEC 85");
-                            mount.SlewToCoordinates(RA, -85.0);
-                            btnHome.BackColor = Color.Black;
-                            btnHome2.BackColor = Color.Black;
-                        }
-                        PMstart = RA;
-                        PMRA = RA;
+                        if (!mount.AtHome)
+                            {
+                                statusbox.Text = "homing";
+                                if (mount.AtPark) mount.Unpark();
+                                mount.Tracking = false;
+                                mount.FindHome();
+                            }
+                        while (!mount.AtHome) Thread.Sleep(1000);
+                        statusbox.Text = "rotating";
+                        mount.MoveAxis(0, -3);
+                        Thread.Sleep(15000);
+                        mount.MoveAxis(0, 0);
+                        btnHome.BackColor = Color.Black;
+                        mount.Tracking = true;
                     }
                 }
                 else System.Windows.Forms.MessageBox.Show("Mount not connected");
@@ -625,18 +598,14 @@ namespace MountControl
         {
             try
             {
-                double RA,DEC;
-                if (mountconnected && !mount.Slewing)
+                if (mountconnected && !mount.Slewing && !mount.AtPark)
                 {
-                    RA = PMRA;
-                    DEC = mount.Declination;
-                    if (RA < 3.0) RA += 24.0;
-                    RA -= 3.0;
-                    PMRA = RA;
-                    System.Windows.Forms.MessageBox.Show("slewing to RA " + Math.Round(RA, 2).ToString());
-                    mount.SlewToCoordinates(RA, DEC);
+                    mount.MoveAxis(0,3);
+                    Thread.Sleep(15000);
+                    mount.MoveAxis(0, 0);
                     btnHome.BackColor = Color.Black;
-                    btnHome2.BackColor = Color.Black;
+                    mount.Tracking = true;
+                    statusbox.Text = "rotating";
                 }
             }
             catch (Exception)
@@ -837,30 +806,6 @@ namespace MountControl
             if ((samplecount >= 3600) && (samplecount % 30 == 0)) chart1.Series[0].Points.DataBindY(chartvalues);
         }
 
-        // routine to return mount back to polemaster starting point
-        private void ReturnMount(object sender, EventArgs e)
-        {
-            try
-            {
-                double RA,DEC;
-                if (mountconnected && !mount.Slewing)
-                {
-                    RA = PMstart;  // go back to start position, even if intermediate steps were skipped
-                    if (RA >= 24.0) RA -= 24.0;
-                    if (RA < 0.0) RA += 24;  // just to be sure
-                    DEC = mount.Declination;
-                    System.Windows.Forms.MessageBox.Show("slewing to RA " + Math.Round(RA, 2).ToString() );
-                    mount.SlewToCoordinates(RA, DEC);
-                    btnHome.BackColor = Color.Black;
-                    btnHome2.BackColor = Color.Black;
-                }
-            }
-            catch (Exception)
-            {
-                statusbox.AppendText(Environment.NewLine + "slew error");
-            }
-        }
-
         private void disconnect_weather(object sender, EventArgs e)
         {
             try
@@ -977,7 +922,7 @@ namespace MountControl
                 System.Windows.Forms.MessageBox.Show(e.Message);
             }
         }
-        // fileread() reads configuration variables from MyDocuments/ASCOM/LifeRoof/domesettings.txt
+        // fileread() reads configuration variables from MyDocuments/ASCOM/Mount/settings.txt
         private void fileread()
         {
             try
