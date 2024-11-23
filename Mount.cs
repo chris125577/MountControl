@@ -374,20 +374,22 @@ namespace MountControl
                         Thread.Sleep(500);
                     }
                     mount.Tracking = true;
-                    /*if (mountId.Contains("OnStep")) // WD20 (onstep) specific step
+                    if (mountId.Contains("OnStep")) // WD20 (onstep) specific step
                     {
+                        statusbox.Text = " homing";
+                        PAstatus.Text = " homing";
                         Thread.Sleep(4000);
                         mount.FindHome();
                         while (!mount.AtHome) Thread.Sleep(1000);
                         mount.Tracking = true;
-                        Thread.Sleep(2000);
+                        Thread.Sleep(4000);
                     }
                     mount.FindHome();
-                    while (!mount.AtHome) Thread.Sleep(1000); */
+                    while (!mount.AtHome) Thread.Sleep(1000);
 
-                    mount.FindHome();  // async request
+                    /*mount.FindHome();  // async request
                     statusbox.Text = " homing";
-                    PAstatus.Text = " homing";
+                    PAstatus.Text = " homing";*/
                 }
                 else
                 {
