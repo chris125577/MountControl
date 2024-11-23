@@ -7,6 +7,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Threading;
 using System.Linq;
+using ASCOM;
 
 // simple windows form-based control panel for telescope mount
 // can be used as template for more customized version
@@ -25,6 +26,8 @@ using System.Linq;
 // v4.0 - graph of environment data
 // v4.3 - updated graph direction and added offset offset for sky temp
 // v4.4 - added tracking on after polemaster actions, also trying out move axis alternative
+// v4.5 - added some delays to homing and tracking to accommodate Onstep mounts.
+// v4.7 - added double homing for Onstep mounts, in case it is trying to home over 90 degrees.
 
 namespace MountControl
 {
@@ -62,7 +65,8 @@ namespace MountControl
             mountId = null;
             weatherId = null;
             // initialise data and status fields
-            statusbox.Text = "not connected";
+            statusbox.Text = " not connected";
+            PAstatus.Text = " not connected";
             // read in, if it exists, the  settings file           
             if (File.Exists(path + "\\Settings.txt")) fileread();
             JogValIP.Text = jogvalue.ToString();
@@ -88,6 +92,15 @@ namespace MountControl
             btnInitialize.ForeColor = Color.Gray;
             btnAbort.BackColor = Color.DarkOrange;
             resetbtn.ForeColor = Color.Gray;
+            IndHome.ForeColor = Color.White;
+            IndPark.ForeColor = Color.White;
+            IndSlew.ForeColor = Color.White;
+            IndTrack.ForeColor = Color.White;    
+            IndHome.BackColor = Color.Black;
+            IndPark.BackColor = Color.Black;
+            IndSlew.BackColor= Color.Black;
+            IndTrack.BackColor = Color.Black;
+
             if (mountId != null)
             {
                 btnConnectSetup.ForeColor = Color.LightGray;
@@ -172,7 +185,8 @@ namespace MountControl
                     mount = new Telescope(mountId);
                     mount.Connected = true;
                     mountconnected = true;
-                    statusbox.Text = "connected";
+                    statusbox.Text = " connected";
+                    PAstatus.Text = " connected";
                     btnConnectSetup.BackColor = Color.DarkGreen;
                     btnConnectSetup.ForeColor = Color.LightGray;
                     btnConnectDup.BackColor = Color.DarkGreen;
@@ -191,29 +205,20 @@ namespace MountControl
                     btnWest.ForeColor = Color.LightGray;
                     btnSouth.ForeColor = Color.LightGray;
                     btnInitialize.ForeColor = Color.LightGray;
-                    if (mount.Tracking == true)
-                    {
-                        btnTrackOn.ForeColor = Color.Gray;
-                        btnTrackOff.ForeColor = Color.LightGray;
-                    }
-                    else
-                    {
-                        btnTrackOn.ForeColor = Color.LightGray;
-                        btnTrackOff.ForeColor = Color.Gray;
-                    }
                     btnInitialize.ForeColor = Color.Gray;
                     // update text boxes with values from mount
-                    GuideRateIP.Value = (decimal)Math.Round(mount.GuideRateDeclination / sidereal, 2);
+                    GuideRateRA.Value = (decimal)Math.Round(mount.GuideRateDeclination / sidereal, 2);
                     LongitudeIP.Text = Math.Round(mount.SiteLongitude,2).ToString();
                     LatitudeIP.Text = Math.Round(mount.SiteLatitude,2).ToString();
                     if (mountId == "ASCOM.HUBOI.Telescope")  // not implemented in Rainbow
-                        ElevationIP.Text = "?";
+                        ElevationIP.Text = " ?";
                     else ElevationIP.Text = Math.Round(mount.SiteElevation,2).ToString();
                 }
                 else
                 {
                     mountconnected = false;
-                    statusbox.Text = "not connected";
+                    statusbox.Text = " not connected";
+                    PAstatus.Text = " not connected";
                 }
             }
             catch (ASCOM.ActionNotImplementedException)
@@ -236,7 +241,7 @@ namespace MountControl
             }
             catch
             {
-                statusbox.Text = "comms error";
+                statusbox.Text = " comms error";
             }
         }
         private void disconnect_mount(object sender, EventArgs e)
@@ -247,7 +252,8 @@ namespace MountControl
                 {
                     mount.Connected = false;  // disconnect mount
                     mountconnected = false;
-                    statusbox.Text = "not connected";
+                    statusbox.Text = " not connected";
+                    PAstatus.Text = " not connected";
                     btnHome.ForeColor = Color.Gray;
                     btnAbort.ForeColor = Color.Gray;
                     btnPark.ForeColor = Color.Gray;
@@ -267,6 +273,14 @@ namespace MountControl
                     btnConnectDup.BackColor = Color.Black;
                     btnDisconnect.ForeColor = Color.Gray;
                     btnDisconnect.BackColor = Color.Black;
+                    IndHome.ForeColor = Color.Gray;
+                    IndPark.ForeColor = Color.Gray;
+                    IndSlew.ForeColor = Color.Gray;
+                    IndTrack.ForeColor = Color.Gray;
+                    IndHome.BackColor = Color.Black;
+                    IndPark.BackColor = Color.Black;
+                    IndSlew.BackColor = Color.Black;
+                    IndTrack.BackColor = Color.Black;
                 }
             }
             catch
@@ -282,24 +296,32 @@ namespace MountControl
             {
                 if (mount.Connected)
                 {
-                    double guiderate;
+                    double guiderateRA, guiderateDEC;
                     mount.UTCDate = (System.DateTime.UtcNow);
-                    System.Windows.Forms.MessageBox.Show("UTC time set");
                     mount.SiteElevation = Convert.ToDouble(ElevationIP.Text);
-                    System.Windows.Forms.MessageBox.Show("elevation set");
-                    guiderate = sidereal * (double)(GuideRateIP.Value) ;  // calculate guide rate
+                    guiderateRA = sidereal * (double)(GuideRateRA.Value) ;  // calculate guide rate
+                    guiderateDEC = sidereal* (double)(GuideRateDEC.Value) ;
 
-                    if (mount.CanSetGuideRates) mount.GuideRateDeclination = guiderate;
+                    if (mount.CanSetGuideRates)
+                    {
+                        mount.GuideRateDeclination = guiderateDEC;
+                        mount.GuideRateRightAscension = guiderateRA;
+                    }
                     else System.Windows.Forms.MessageBox.Show("mount does not support guide rate");
 
-                    guiderate = Math.Round(mount.GuideRateDeclination / sidereal, 3); // read back to confirm
-                    System.Windows.Forms.MessageBox.Show("guide rate confirmed " + guiderate.ToString() + "x");
+                    guiderateDEC = Math.Round(mount.GuideRateDeclination / sidereal, 3); // read back to confirm
+                    guiderateRA = Math.Round(mount.GuideRateRightAscension / sidereal, 3);
                     mount.SiteLongitude = Convert.ToDouble(LongitudeIP.Text);
                     mount.SiteLatitude = Convert.ToDouble(LatitudeIP.Text);
-                    System.Windows.Forms.MessageBox.Show("location updated");
+                    // read back data and display
+                    GuideRateRA.Value = (decimal)guiderateRA;
+                    GuideRateDEC.Value = (decimal)guiderateDEC;
+                    ElevationIP.Text = mount.SiteElevation.ToString();
+                    LongitudeIP.Text=mount.SiteLatitude.ToString();
+                    LatitudeIP.Text = mount.SiteLatitude.ToString();
                     filewrite();
                 }
-                else statusbox.Text = "not required";
+                else statusbox.Text = " not required";
             }
             catch
             {
@@ -314,10 +336,20 @@ namespace MountControl
                 {
                     if (!mount.AtPark)
                     {
-                        statusbox.Text = "parking";
+                        statusbox.Text = " parking";
+                        PAstatus.Text = " parking";
+                        if (mount.AtHome)
+                        {
+                            mount.Tracking = true;
+                            Thread.Sleep(2000);
+                        }
                         mount.Park();
                     }
-                    else statusbox.Text = "parked";
+                    else
+                    {
+                        statusbox.Text = " parked";
+                        PAstatus.Text = " parked";
+                    }
                 }
                 else
                 {
@@ -326,23 +358,36 @@ namespace MountControl
             }
             catch
             {
-                statusbox.Text = "comms error";
+                statusbox.Text = " comms error";
             }
         }
+        // home mount has been optimized for the WD20 mount, which does not like homing over more than 90 degrees or when it is not tracking
         private void home_mount(object sender, EventArgs e)
         {
             try
             {
                 if (mountconnected && mount.CanFindHome)
                 {
-                    if (!mount.AtHome)
+                    if (mount.AtPark)
                     {
-                        statusbox.Text = "homing";
-                        if (mount.AtPark) mount.Unpark();
-                        mount.Tracking = false;
-                        mount.FindHome();
+                        mount.Unpark();
+                        Thread.Sleep(500);
                     }
-                    else statusbox.Text = "parked?";
+                    mount.Tracking = true;
+                    /*if (mountId.Contains("OnStep")) // WD20 (onstep) specific step
+                    {
+                        Thread.Sleep(4000);
+                        mount.FindHome();
+                        while (!mount.AtHome) Thread.Sleep(1000);
+                        mount.Tracking = true;
+                        Thread.Sleep(2000);
+                    }
+                    mount.FindHome();
+                    while (!mount.AtHome) Thread.Sleep(1000); */
+
+                    mount.FindHome();  // async request
+                    statusbox.Text = " homing";
+                    PAstatus.Text = " homing";
                 }
                 else
                 {
@@ -351,7 +396,7 @@ namespace MountControl
             }
             catch
             {
-                statusbox.Text = "comms error";
+                statusbox.Text = " comms error";
             }
         }
         private void track_on(object sender, EventArgs e)
@@ -362,19 +407,16 @@ namespace MountControl
                 {
                     if (!mount.Tracking)
                     {
-                        statusbox.Text = "tracking";
+                        statusbox.Text = " tracking";
+                        PAstatus.Text = " tracking";
                         if (mount.AtPark) mount.Unpark();  // in the case that it is parked
                         mount.Tracking = true;
-                        btnTrackOn.ForeColor = Color.Gray;
-                        btnTrackOff.ForeColor = Color.LightGray;
-                        btnTrackOn.BackColor = Color.DarkGreen;
-                        btnTrackOn.ForeColor = Color.Black;
                     }
                 }
             }
             catch
             {
-                statusbox.Text = "comms error";
+                statusbox.Text = " comms error";
             }
         }
         private void track_off(object sender, EventArgs e)
@@ -385,19 +427,16 @@ namespace MountControl
                 {
                     if (mount.Tracking && mount.CanSetTracking)
                     {
-                        statusbox.Text = "stopping";
+                        statusbox.Text = " stopped";
+                        PAstatus.Text = " stopped";
                         mount.Tracking = false;
-                        btnTrackOn.ForeColor = Color.LightGray;
-                        btnTrackOff.ForeColor = Color.Gray;
-                        btnTrackOn.BackColor = Color.Black;
-                        btnTrackOn.ForeColor = Color.LightGray;
                     }
-                    else statusbox.Text = "not tracking or parked";
+                    else statusbox.Text = " not tracking or parked";
                 }
             }
             catch
             {
-                statusbox.Text = "comms error";
+                statusbox.Text = " comms error";
             }
         }
         private void unpark(object sender, EventArgs e)
@@ -409,10 +448,8 @@ namespace MountControl
                     if (mount.AtPark)
                     {
                         mount.Unpark();
-                        statusbox.Text = "Unparked";
-                        btnPark.ForeColor = Color.LightGray;
-                        btnUnpark.ForeColor = Color.Gray;
-                        btnPark.BackColor = Color.Black;
+                        statusbox.Text = " unparked";
+                        PAstatus.Text = " unparked";
                     }
                     else System.Windows.Forms.MessageBox.Show("mount not parked!");
                 }
@@ -423,7 +460,7 @@ namespace MountControl
             }
             catch
             {
-                statusbox.Text = "comms error";
+                statusbox.Text = " comms error";
             }
         }
         private void abort_mount(object sender, EventArgs e)
@@ -437,7 +474,7 @@ namespace MountControl
             }
             catch
             {
-                statusbox.Text = "comms error";
+                statusbox.Text = " comms error";
             }
         }
         private void connect_weather(object sender, EventArgs e)
@@ -447,16 +484,17 @@ namespace MountControl
                 if (weatherId != null)
                 {
                     weather = new ObservingConditions(weatherId);
+                    weather.Connect();
                     weather.Connected = true;
                     weatherconnected = true;
-                    humidtext.Text = "connected";
-                    pressuretext.Text = "connected";
-                    temptext.Text = "connected";
-                    skytemptext.Text = "connected";
-                    skyqtext.Text = "connected";
-                    rainratetext.Text = "connected";
-                    cloudtext.Text = "connected";
-                    dewpointtext.Text = "connected";
+                    humidtext.Text = " connected";
+                    pressuretext.Text = " connected";
+                    temptext.Text = " connected";
+                    skytemptext.Text = " connected";
+                    skyqtext.Text = " connected";
+                    rainratetext.Text = " connected";
+                    cloudtext.Text = "  connected";
+                    dewpointtext.Text = "  connected";
                     btnConnectWeather.BackColor = Color.DarkGreen;
                     btnConnectWeather.ForeColor = Color.LightGray;
                     btnConnWeather.ForeColor = Color.LightGray;
@@ -483,29 +521,60 @@ namespace MountControl
                 else
                 {
                     weatherconnected = false;
-                    humidtext.Text = "not connected";
-                    pressuretext.Text = "not connected";
-                    temptext.Text = "not connected";
-                    cloudtext.Text = "not connected";
-                    rainratetext.Text = "not connected";
-                    skyqtext.Text = "not connected";
-                    skytemptext.Text = "not connected";
-                    dewpointtext.Text = "not connected";
+                    humidtext.Text = " not connected";
+                    pressuretext.Text = " not connected";
+                    temptext.Text = " not connected";
+                    cloudtext.Text = " not connected";
+                    rainratetext.Text = " not connected";
+                    skyqtext.Text = " not connected";
+                    skytemptext.Text = " not connected";
+                    dewpointtext.Text = " not connected";
                 }
+            }
+            catch (PropertyNotImplementedException)
+            { 
             }
             catch (Exception)
             {
-                weather.Connected = false;
+                //weather.Connected = false;
+                weather.Disconnect();
                 weatherconnected = false;
                 System.Windows.Forms.MessageBox.Show("Weather did not connect");
-            }
+            }            
         }
         private void refreshmount()
         {
             try
             {
-                if (!mount.Slewing)
+                if (mount.AtPark)
                 {
+                    statusbox.Text = " parked";
+                    PAstatus.Text = " parked";
+                    IndPark.BackColor = Color.DarkGreen;
+                }
+                else  IndPark.BackColor = Color.Black;
+
+
+                if (mount.Slewing)
+                {
+                    IndSlew.BackColor = Color.DarkGreen;
+                    statusbox.Text = " slewing";
+                    PAstatus.Text = " slewing";
+                }
+                else   IndSlew.BackColor = Color.Black;
+
+                if (mount.AtHome)
+                {
+                    statusbox.Text = " homed";
+                    PAstatus.Text = " homed";;
+                    IndHome.BackColor= Color.DarkGreen;
+                }
+                else  IndHome.BackColor = Color.Black;   
+
+                if  (mount.Tracking)
+                {
+                    statusbox.Text = " tracking";
+                    PAstatus.Text = " tracking";;
                     ra = mount.RightAscension;
                     dec = mount.Declination;
                     alt = mount.Altitude;
@@ -516,48 +585,14 @@ namespace MountControl
                     RA2text.Text = Math.Round(ra, 2).ToString();
                     AltText.Text = Math.Round(alt, 2).ToString();
                     AzText.Text = Math.Round(az, 2).ToString();
+                    IndTrack.BackColor = Color.DarkGreen;
                 }
-                if (mount.AtHome)
-                {
-                    statusbox.Text = "Homed";
-                    btnHome.BackColor = Color.DarkGreen;
-                     btnPark.ForeColor = Color.LightGray;
-                    btnPark.BackColor = Color.Black;
-                }
-                else if (mount.AtPark)
-                {
-                    statusbox.Text = "Parked";
-                    btnPark.BackColor = Color.DarkGreen;
-                    btnPark.ForeColor = Color.Black;
-                    btnUnpark.ForeColor = Color.LightGray;
-                    btnTrackOn.ForeColor = Color.Gray;
-                    btnTrackOn.BackColor = Color.Black;
-                    btnHome.BackColor = Color.Black;
-                }
-                else if (mount.Slewing)
-                {
-                    statusbox.Text = "Slewing";
-                    btnHome.BackColor = Color.Black;                    
-                }
+                else  IndTrack.BackColor = Color.Black;
 
-                else if (mount.Tracking)
-                {
-                    statusbox.Text = "Tracking";
-                    btnTrackOn.ForeColor = Color.Black;
-                    btnTrackOn.BackColor = Color.DarkGreen;
-                    btnHome.BackColor = Color.Black;
-                }
-                else
-                {
-                    statusbox.Text = "Not Tracking";
-                    btnUnpark.ForeColor = Color.LightGray;
-                    btnTrackOn.ForeColor = Color.LightGray;
-                    btnTrackOn.BackColor = Color.Black;
-                }
             }
             catch
             {
-                statusbox.Text = "comms error";
+                statusbox.Text = " comms error";
             }
         }
         // Polemaster moves to home and counterclockwise to select Polaris and another star
@@ -567,25 +602,42 @@ namespace MountControl
             {
                 if (mount.Connected)                  
                 {
-                    if (mount.AtPark) mount.Unpark();
-                    if (!mount.Slewing)
+                    statusbox.Text = " homing";
+                    PAstatus.Text = " homing";
+                    if (mount.AtPark)
                     {
-                        if (!mount.AtHome)
-                            {
-                                statusbox.Text = "homing";
-                                if (mount.AtPark) mount.Unpark();
-                                mount.Tracking = false;
-                                mount.FindHome();
-                            }
-                        while (!mount.AtHome) Thread.Sleep(1000);
-                        statusbox.Text = "rotating";
-                        mount.MoveAxis(0, -3);
-                        Thread.Sleep(15000);
-                        mount.MoveAxis(0, 0);
-                        btnHome.BackColor = Color.Black;
-                        mount.Tracking = true;
+                    mount.Unpark();
+                    PAstatus.Text = " unparking";
+                    statusbox.Text = " unparking";
+                    Thread.Sleep(500);
                     }
+                    mount.Tracking = true;
+                    if (mountId.Contains("OnStep")) // WD20 (onstep) specific step
+                    {
+                        Thread.Sleep(4000);
+                        PAstatus.Text = " homing";
+                        statusbox.Text = " homing";
+                        mount.FindHome();
+                        while (!mount.AtHome) Thread.Sleep(1000);
+                        mount.Tracking = true;
+                        Thread.Sleep(2000);
+                    }
+                    mount.FindHome();
+                    mount.Tracking = true;    //delay 4s                                
+                    PAstatus.Text = " homing";
+                    statusbox.Text = " homing";
+                    while (!mount.AtHome) Thread.Sleep(1000);
+                    PAstatus.Text = " slewing";
+                    statusbox.Text = " slewing";
+                    Thread.Sleep(1000);
+                    mount.MoveAxis(0, -3);
+                    Thread.Sleep(15000);
+                    mount.MoveAxis(0, 0);
+                    mount.Tracking = true;
+                    PAstatus.Text = " tracking";
+                    statusbox.Text = " tracking";
                 }
+
                 else System.Windows.Forms.MessageBox.Show("Mount not connected");
             }
             catch (Exception)
@@ -600,12 +652,14 @@ namespace MountControl
             {
                 if (mountconnected && !mount.Slewing && !mount.AtPark)
                 {
+                    PAstatus.Text = " slewing";
+                    statusbox.Text = " slewing";
                     mount.MoveAxis(0,3);
                     Thread.Sleep(15000);
                     mount.MoveAxis(0, 0);
-                    btnHome.BackColor = Color.Black;
                     mount.Tracking = true;
-                    statusbox.Text = "rotating";
+                    PAstatus.Text = " tracking";
+                    statusbox.Text = " tracking";
                 }
             }
             catch (Exception)
@@ -613,13 +667,15 @@ namespace MountControl
                 statusbox.AppendText(Environment.NewLine + "slew error");
             }
         }
-        private void resetsensor(object sender, EventArgs e)
+        private void resetparams(object sender, EventArgs e)
         {
             // reset chart
-            ReadProfile(); // get weather ascom profile for values
+            ReadProfile();  // get ASCOM profile
             samplecount = 0;          
             for (int i = 0; i < 120; i++) chartvalues[i] = 0;
             chart1.Series[0].Points.DataBindY(chartvalues);
+
+            // resend params to Arduino
             if (weather.Connected && weatherId == "ASCOM.NanoOC.ObservingConditions")
             {
                 weather.CommandBlind(command, false);
@@ -812,16 +868,17 @@ namespace MountControl
             {
                 if (weatherconnected)
                 {
-                    weather.Connected = false;   //disconnect weather sensors
+                    //weather.Connected = false;   //disconnect weather sensors Ascom6
+                    weather.Disconnect(); // Ascom 7
                     weatherconnected = false;
-                    humidtext.Text = "not connected";
-                    pressuretext.Text = "not connected";
-                    temptext.Text = "not connected";
-                    dewpointtext.Text = "not connected";
-                    cloudtext.Text = "not connected";
-                    skyqtext.Text = "not connected";
-                    skytemptext.Text = "not connected";
-                    rainratetext.Text = "not connected";
+                    humidtext.Text = " not connected";
+                    pressuretext.Text = " not connected";
+                    temptext.Text = " not connected";
+                    dewpointtext.Text = " not connected";
+                    cloudtext.Text = " not connected";
+                    skyqtext.Text = " not connected";
+                    skytemptext.Text = " not connected";
+                    rainratetext.Text = " not connected";
                     btnWeathChoose.ForeColor = Color.LightGray;
                     btnWeathChoose.BackColor = Color.Black;
                     btnConnectWeather.ForeColor = Color.LightGray;
@@ -848,7 +905,7 @@ namespace MountControl
             }
             catch
             {
-                statusbox.Text = "comms error";
+                statusbox.Text = " comms error";
             }
         }
         private void east(object sender, EventArgs e)
@@ -862,9 +919,10 @@ namespace MountControl
             }
             catch
             {
-                statusbox.Text = "comms error";
+                statusbox.Text = " comms error";
             }
         }
+
         private void south(object sender, EventArgs e)
         {
             try
@@ -874,7 +932,7 @@ namespace MountControl
             }
             catch
             {
-                statusbox.Text = "comms error";
+                statusbox.Text = " comms error";
             }
         }
         private void north(object sender, EventArgs e)
@@ -886,7 +944,7 @@ namespace MountControl
             }
             catch
             {
-                statusbox.Text = "comms error";
+                statusbox.Text = " comms error";
             }
         }
         private void status_updates(object sender, EventArgs e) // every 2 seconds
@@ -898,7 +956,7 @@ namespace MountControl
             }
             catch
             {
-                statusbox.Text = "comms error";
+                statusbox.Text = "  comms error";
             }
         }
         // filewrite() saves configuration variables to MyDocuments/ASCOM/Mount/settings.txt
