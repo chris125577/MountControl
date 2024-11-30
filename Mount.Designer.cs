@@ -403,11 +403,6 @@
             0,
             0,
             65536});
-            this.GuideRateRA.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
             this.GuideRateRA.Name = "GuideRateRA";
             this.GuideRateRA.Size = new System.Drawing.Size(64, 20);
             this.GuideRateRA.TabIndex = 27;
@@ -928,7 +923,7 @@
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage3.Size = new System.Drawing.Size(280, 311);
             this.tabPage3.TabIndex = 3;
-            this.tabPage3.Text = "PoleMaster";
+            this.tabPage3.Text = "Pol. Algn.";
             // 
             // label26
             // 
@@ -1118,11 +1113,6 @@
             this.GuideRateDEC.Location = new System.Drawing.Point(108, 78);
             this.GuideRateDEC.Maximum = new decimal(new int[] {
             10,
-            0,
-            0,
-            65536});
-            this.GuideRateDEC.Minimum = new decimal(new int[] {
-            1,
             0,
             0,
             65536});

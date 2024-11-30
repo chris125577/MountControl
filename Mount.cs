@@ -28,6 +28,7 @@ using ASCOM;
 // v4.4 - added tracking on after polemaster actions, also trying out move axis alternative
 // v4.5 - added some delays to homing and tracking to accommodate Onstep mounts.
 // v4.7 - added double homing for Onstep mounts, in case it is trying to home over 90 degrees.
+// v5.0 - small modifications and improvements to special case documentation- stable version
 
 namespace MountControl
 {
@@ -58,6 +59,7 @@ namespace MountControl
         private int samplecount = 0;  // sampling value increments every 2 seconds
         private int charttype = 0;  //selection variable
         private string command; // holds string to set up meter
+        private bool mountcantrack, mountcanpark, mountcanhome;
 
         public ControlForm()
         {
@@ -207,12 +209,15 @@ namespace MountControl
                     btnInitialize.ForeColor = Color.LightGray;
                     btnInitialize.ForeColor = Color.Gray;
                     // update text boxes with values from mount
-                    GuideRateRA.Value = (decimal)Math.Round(mount.GuideRateDeclination / sidereal, 2);
-                    LongitudeIP.Text = Math.Round(mount.SiteLongitude,2).ToString();
-                    LatitudeIP.Text = Math.Round(mount.SiteLatitude,2).ToString();
-                    if (mountId == "ASCOM.HUBOI.Telescope")  // not implemented in Rainbow
-                        ElevationIP.Text = " ?";
-                    else ElevationIP.Text = Math.Round(mount.SiteElevation,2).ToString();
+                    GuideRateRA.Value = (decimal)Math.Round(mount.GuideRateDeclination / sidereal, 3);
+                    GuideRateDEC.Value = (decimal)Math.Round(mount.GuideRateDeclination / sidereal, 3);
+                    LongitudeIP.Text = Math.Round(mount.SiteLongitude,4).ToString();
+                    LatitudeIP.Text = Math.Round(mount.SiteLatitude,4).ToString();
+                    ElevationIP.Text = Math.Round(mount.SiteElevation,2).ToString();
+                    mountcanhome = mount.CanFindHome;
+                    mountcanpark = mount.CanPark;
+                    mountcantrack = mount.CanSetTracking;
+                    mount.UTCDate = (System.DateTime.UtcNow); // see if this works here
                 }
                 else
                 {
@@ -332,7 +337,7 @@ namespace MountControl
         {
             try
             {
-                if (mount.CanPark && mountconnected)
+                if (mountcanpark && mountconnected)
                 {
                     if (!mount.AtPark)
                     {
@@ -358,7 +363,7 @@ namespace MountControl
             }
             catch
             {
-                statusbox.Text = " comms error";
+                statusbox.Text = " park error";
             }
         }
         // home mount has been optimized for the WD20 mount, which does not like homing over more than 90 degrees or when it is not tracking
@@ -366,8 +371,9 @@ namespace MountControl
         {
             try
             {
-                if (mountconnected && mount.CanFindHome)
+                if (mountconnected && mountcanhome)
                 {
+                    int i;
                     if (mount.AtPark)
                     {
                         mount.Unpark();
@@ -378,18 +384,35 @@ namespace MountControl
                     {
                         statusbox.Text = " homing";
                         PAstatus.Text = " homing";
-                        Thread.Sleep(4000);
+                        Thread.Sleep(2000);
                         mount.FindHome();
-                        while (!mount.AtHome) Thread.Sleep(1000);
+                        i = 0;
+                        while (!mount.AtHome && i < 60)
+                        {
+                            Thread.Sleep(1000);
+                            i++;
+                        }
                         mount.Tracking = true;
-                        Thread.Sleep(4000);
+                        Thread.Sleep(2000);
                     }
                     mount.FindHome();
-                    while (!mount.AtHome) Thread.Sleep(1000);
-
-                    /*mount.FindHome();  // async request
+                    i = 0;
+                    while (!mount.AtHome && i < 60)
+                    {
+                        Thread.Sleep(1000);
+                        i++;
+                    }
+                    // async request alternative for V4 methods
+                    /*mount.FindHome();  
                     statusbox.Text = " homing";
-                    PAstatus.Text = " homing";*/
+                    PAstatus.Text = " homing";
+                    i = 0;
+                    while (mount.Slewing && i <60)
+                    {
+                        Thread.Sleep(1000);
+                        i++
+                    }
+                    */
                 }
                 else
                 {
@@ -405,20 +428,20 @@ namespace MountControl
         {
             try
             {
-                if (mountconnected && mount.CanSetTracking)
+                if (mountconnected && mountcantrack && !mount.AtPark)
                 {
                     if (!mount.Tracking)
                     {
                         statusbox.Text = " tracking";
                         PAstatus.Text = " tracking";
-                        if (mount.AtPark) mount.Unpark();  // in the case that it is parked
+                        //if (mount.AtPark) mount.Unpark();  // in the case that it is parked
                         mount.Tracking = true;
                     }
                 }
             }
             catch
             {
-                statusbox.Text = " comms error";
+                statusbox.Text = " track error";
             }
         }
         private void track_off(object sender, EventArgs e)
@@ -427,7 +450,7 @@ namespace MountControl
             {
                 if (mountconnected)
                 {
-                    if (mount.Tracking && mount.CanSetTracking)
+                    if (mount.Tracking && mountcantrack)
                     {
                         statusbox.Text = " stopped";
                         PAstatus.Text = " stopped";
@@ -438,14 +461,14 @@ namespace MountControl
             }
             catch
             {
-                statusbox.Text = " comms error";
+                statusbox.Text = " track error";
             }
         }
         private void unpark(object sender, EventArgs e)
         {
             try
             {
-                if (mountconnected && mount.CanPark)
+                if (mountconnected && mountcanpark)
                 {
                     if (mount.AtPark)
                     {
@@ -462,7 +485,7 @@ namespace MountControl
             }
             catch
             {
-                statusbox.Text = " comms error";
+                statusbox.Text = " unpark error";
             }
         }
         private void abort_mount(object sender, EventArgs e)
@@ -556,41 +579,39 @@ namespace MountControl
                 }
                 else  IndPark.BackColor = Color.Black;
 
-
-                if (mount.Slewing)
-                {
-                    IndSlew.BackColor = Color.DarkGreen;
-                    statusbox.Text = " slewing";
-                    PAstatus.Text = " slewing";
-                }
-                else   IndSlew.BackColor = Color.Black;
-
                 if (mount.AtHome)
                 {
                     statusbox.Text = " homed";
                     PAstatus.Text = " homed";;
                     IndHome.BackColor= Color.DarkGreen;
                 }
-                else  IndHome.BackColor = Color.Black;   
-
+                else  IndHome.BackColor = Color.Black;
+               
+                if (mount.Slewing)
+                {
+                    IndSlew.BackColor = Color.DarkGreen;
+                    statusbox.Text = " slewing";
+                    PAstatus.Text = " slewing";
+                }
+                else IndSlew.BackColor = Color.Black;
                 if  (mount.Tracking)
                 {
                     statusbox.Text = " tracking";
                     PAstatus.Text = " tracking";;
-                    ra = mount.RightAscension;
-                    dec = mount.Declination;
-                    alt = mount.Altitude;
-                    az = mount.Azimuth;
-                    DECText.Text = Math.Round(dec, 2).ToString();
-                    DEC2Text.Text = Math.Round(dec, 2).ToString();
-                    RAText.Text = Math.Round(ra, 2).ToString();
-                    RA2text.Text = Math.Round(ra, 2).ToString();
-                    AltText.Text = Math.Round(alt, 2).ToString();
-                    AzText.Text = Math.Round(az, 2).ToString();
+                    
                     IndTrack.BackColor = Color.DarkGreen;
                 }
                 else  IndTrack.BackColor = Color.Black;
-
+                ra = mount.RightAscension;
+                dec = mount.Declination;
+                alt = mount.Altitude;
+                az = mount.Azimuth;
+                DECText.Text = Math.Round(dec, 4).ToString();
+                DEC2Text.Text = Math.Round(dec, 4).ToString();
+                RAText.Text = Math.Round(ra, 4).ToString();
+                RA2text.Text = Math.Round(ra, 4).ToString();
+                AltText.Text = Math.Round(alt, 4).ToString();
+                AzText.Text = Math.Round(az, 4).ToString();
             }
             catch
             {
@@ -602,7 +623,8 @@ namespace MountControl
         {
             try
             {
-                if (mount.Connected)                  
+                int i;
+                if (mountconnected)                  
                 {
                     statusbox.Text = " homing";
                     PAstatus.Text = " homing";
@@ -614,24 +636,33 @@ namespace MountControl
                     Thread.Sleep(500);
                     }
                     mount.Tracking = true;
-                    if (mountId.Contains("OnStep")) // WD20 (onstep) specific step
+                    if (mountId.Contains("OnStep")) // WD20 (OnStep) specific additional homing for >90 degrees
                     {
-                        Thread.Sleep(4000);
+                        Thread.Sleep(2000);
                         PAstatus.Text = " homing";
                         statusbox.Text = " homing";
                         mount.FindHome();
-                        while (!mount.AtHome) Thread.Sleep(1000);
+                        i = 0;
+                        while (!mount.AtHome && i < 60)
+                        {
+                            Thread.Sleep(1000);
+                            i++;
+                        }
                         mount.Tracking = true;
                         Thread.Sleep(2000);
                     }
                     mount.FindHome();
-                    mount.Tracking = true;    //delay 4s                                
+                    mount.Tracking = true;                                    
                     PAstatus.Text = " homing";
                     statusbox.Text = " homing";
-                    while (!mount.AtHome) Thread.Sleep(1000);
+                    i = 0;
+                    while (!mount.AtHome && i < 60)
+                    {
+                        Thread.Sleep(1000);
+                        i++;
+                    }
                     PAstatus.Text = " slewing";
                     statusbox.Text = " slewing";
-                    Thread.Sleep(1000);
                     mount.MoveAxis(0, -3);
                     Thread.Sleep(15000);
                     mount.MoveAxis(0, 0);
