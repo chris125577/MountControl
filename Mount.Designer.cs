@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlForm));
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 0D);
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlForm));
             this.btnChooser = new System.Windows.Forms.Button();
             this.btnPark = new System.Windows.Forms.Button();
             this.btnUnpark = new System.Windows.Forms.Button();
@@ -72,7 +72,20 @@
             this.IndSlew = new System.Windows.Forms.Button();
             this.btnHome = new System.Windows.Forms.Button();
             this.btnConnectDup = new System.Windows.Forms.Button();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.PA = new System.Windows.Forms.TabPage();
+            this.label26 = new System.Windows.Forms.Label();
+            this.PAstatus = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.DEC2Text = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.RA2text = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.minus3 = new System.Windows.Forms.Button();
+            this.plus3 = new System.Windows.Forms.Button();
+            this.label17 = new System.Windows.Forms.Label();
+            this.environ = new System.Windows.Forms.TabPage();
+            this.btnWeathChoose = new System.Windows.Forms.Button();
             this.rain = new System.Windows.Forms.Label();
             this.rainratetext = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
@@ -91,45 +104,31 @@
             this.pressuretext = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.temptext = new System.Windows.Forms.TextBox();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.graphs = new System.Windows.Forms.TabPage();
+            this.resetbtn = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.btngraphsel = new System.Windows.Forms.ComboBox();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.label26 = new System.Windows.Forms.Label();
-            this.PAstatus = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.DEC2Text = new System.Windows.Forms.TextBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.RA2text = new System.Windows.Forms.TextBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.minus3 = new System.Windows.Forms.Button();
-            this.plus3 = new System.Windows.Forms.Button();
-            this.label17 = new System.Windows.Forms.Label();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.setup = new System.Windows.Forms.TabPage();
+            this.dupbtnDisconnect = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
             this.slewrate = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.GuideRateDEC = new System.Windows.Forms.NumericUpDown();
-            this.label25 = new System.Windows.Forms.Label();
-            this.resetbtn = new System.Windows.Forms.Button();
-            this.btnConnWeather = new System.Windows.Forms.Button();
-            this.btnWeathChoose = new System.Windows.Forms.Button();
-            this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.btnConnectSetup = new System.Windows.Forms.Button();
             this.elevate = new System.Windows.Forms.Label();
             this.ElevationIP = new System.Windows.Forms.TextBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.GuideRateRA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.JogValIP)).BeginInit();
             this.Application.SuspendLayout();
             this.Control.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage4.SuspendLayout();
+            this.PA.SuspendLayout();
+            this.environ.SuspendLayout();
+            this.graphs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
-            this.tabPage3.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.setup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GuideRateDEC)).BeginInit();
             this.SuspendLayout();
             // 
@@ -138,7 +137,7 @@
             this.btnChooser.BackColor = System.Drawing.Color.Black;
             this.btnChooser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnChooser.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnChooser.Location = new System.Drawing.Point(108, 12);
+            this.btnChooser.Location = new System.Drawing.Point(21, 12);
             this.btnChooser.Name = "btnChooser";
             this.btnChooser.Size = new System.Drawing.Size(64, 23);
             this.btnChooser.TabIndex = 1;
@@ -190,11 +189,11 @@
             this.btnInitialize.BackColor = System.Drawing.Color.Black;
             this.btnInitialize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInitialize.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnInitialize.Location = new System.Drawing.Point(111, 193);
+            this.btnInitialize.Location = new System.Drawing.Point(94, 229);
             this.btnInitialize.Name = "btnInitialize";
-            this.btnInitialize.Size = new System.Drawing.Size(64, 23);
+            this.btnInitialize.Size = new System.Drawing.Size(77, 23);
             this.btnInitialize.TabIndex = 6;
-            this.btnInitialize.Text = "set mount";
+            this.btnInitialize.Text = "init. mount";
             this.btnInitialize.UseVisualStyleBackColor = false;
             this.btnInitialize.Click += new System.EventHandler(this.init_mount);
             // 
@@ -375,11 +374,11 @@
             // 
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label7.Location = new System.Drawing.Point(10, 49);
+            this.label7.Location = new System.Drawing.Point(38, 63);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(84, 13);
+            this.label7.Size = new System.Drawing.Size(90, 13);
             this.label7.TabIndex = 26;
-            this.label7.Text = "RA rate 0.1-1.0x";
+            this.label7.Text = "RA rate 0.25-1.0x";
             // 
             // statustimer
             // 
@@ -393,16 +392,21 @@
             this.GuideRateRA.DecimalPlaces = 2;
             this.GuideRateRA.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.GuideRateRA.Increment = new decimal(new int[] {
-            5,
+            25,
             0,
             0,
             131072});
-            this.GuideRateRA.Location = new System.Drawing.Point(107, 47);
+            this.GuideRateRA.Location = new System.Drawing.Point(135, 61);
             this.GuideRateRA.Maximum = new decimal(new int[] {
             10,
             0,
             0,
             65536});
+            this.GuideRateRA.Minimum = new decimal(new int[] {
+            25,
+            0,
+            0,
+            131072});
             this.GuideRateRA.Name = "GuideRateRA";
             this.GuideRateRA.Size = new System.Drawing.Size(64, 20);
             this.GuideRateRA.TabIndex = 27;
@@ -469,7 +473,7 @@
             // 
             this.LatitudeIP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.LatitudeIP.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.LatitudeIP.Location = new System.Drawing.Point(55, 121);
+            this.LatitudeIP.Location = new System.Drawing.Point(71, 140);
             this.LatitudeIP.Name = "LatitudeIP";
             this.LatitudeIP.Size = new System.Drawing.Size(64, 20);
             this.LatitudeIP.TabIndex = 31;
@@ -479,7 +483,7 @@
             // 
             this.LongitudeIP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.LongitudeIP.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.LongitudeIP.Location = new System.Drawing.Point(186, 121);
+            this.LongitudeIP.Location = new System.Drawing.Point(201, 140);
             this.LongitudeIP.Name = "LongitudeIP";
             this.LongitudeIP.Size = new System.Drawing.Size(64, 20);
             this.LongitudeIP.TabIndex = 32;
@@ -489,29 +493,29 @@
             // 
             this.label8.AutoSize = true;
             this.label8.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label8.Location = new System.Drawing.Point(13, 124);
+            this.label8.Location = new System.Drawing.Point(25, 143);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(22, 13);
+            this.label8.Size = new System.Drawing.Size(41, 13);
             this.label8.TabIndex = 33;
-            this.label8.Text = "Lat";
+            this.label8.Text = "latitude";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label9.Location = new System.Drawing.Point(144, 124);
+            this.label9.Location = new System.Drawing.Point(144, 143);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(31, 13);
+            this.label9.Size = new System.Drawing.Size(50, 13);
             this.label9.TabIndex = 34;
-            this.label9.Text = "Long";
+            this.label9.Text = "longitude";
             // 
             // Application
             // 
             this.Application.Controls.Add(this.Control);
-            this.Application.Controls.Add(this.tabPage1);
-            this.Application.Controls.Add(this.tabPage4);
-            this.Application.Controls.Add(this.tabPage3);
-            this.Application.Controls.Add(this.tabPage2);
+            this.Application.Controls.Add(this.PA);
+            this.Application.Controls.Add(this.environ);
+            this.Application.Controls.Add(this.graphs);
+            this.Application.Controls.Add(this.setup);
             this.Application.Location = new System.Drawing.Point(0, 1);
             this.Application.Name = "Application";
             this.Application.SelectedIndex = 0;
@@ -630,300 +634,26 @@
             this.btnConnectDup.UseVisualStyleBackColor = false;
             this.btnConnectDup.Click += new System.EventHandler(this.connect_mount);
             // 
-            // tabPage1
+            // PA
             // 
-            this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.tabPage1.Controls.Add(this.rain);
-            this.tabPage1.Controls.Add(this.rainratetext);
-            this.tabPage1.Controls.Add(this.label16);
-            this.tabPage1.Controls.Add(this.skytemptext);
-            this.tabPage1.Controls.Add(this.btnDiscWeather);
-            this.tabPage1.Controls.Add(this.btnConnectWeather);
-            this.tabPage1.Controls.Add(this.label18);
-            this.tabPage1.Controls.Add(this.skyqtext);
-            this.tabPage1.Controls.Add(this.cloud);
-            this.tabPage1.Controls.Add(this.cloudtext);
-            this.tabPage1.Controls.Add(this.dew);
-            this.tabPage1.Controls.Add(this.dewpointtext);
-            this.tabPage1.Controls.Add(this.label15);
-            this.tabPage1.Controls.Add(this.humidtext);
-            this.tabPage1.Controls.Add(this.label14);
-            this.tabPage1.Controls.Add(this.pressuretext);
-            this.tabPage1.Controls.Add(this.label13);
-            this.tabPage1.Controls.Add(this.temptext);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(280, 311);
-            this.tabPage1.TabIndex = 2;
-            this.tabPage1.Text = "Weather";
-            // 
-            // rain
-            // 
-            this.rain.AutoSize = true;
-            this.rain.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.rain.Location = new System.Drawing.Point(148, 151);
-            this.rain.Name = "rain";
-            this.rain.Size = new System.Drawing.Size(45, 13);
-            this.rain.TabIndex = 51;
-            this.rain.Text = "rain rate";
-            // 
-            // rainratetext
-            // 
-            this.rainratetext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.rainratetext.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.rainratetext.Location = new System.Drawing.Point(200, 148);
-            this.rainratetext.Name = "rainratetext";
-            this.rainratetext.Size = new System.Drawing.Size(69, 20);
-            this.rainratetext.TabIndex = 50;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label16.Location = new System.Drawing.Point(155, 121);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(35, 13);
-            this.label16.TabIndex = 49;
-            this.label16.Text = "Sky C";
-            // 
-            // skytemptext
-            // 
-            this.skytemptext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.skytemptext.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.skytemptext.Location = new System.Drawing.Point(200, 118);
-            this.skytemptext.Name = "skytemptext";
-            this.skytemptext.Size = new System.Drawing.Size(69, 20);
-            this.skytemptext.TabIndex = 48;
-            // 
-            // btnDiscWeather
-            // 
-            this.btnDiscWeather.BackColor = System.Drawing.Color.Black;
-            this.btnDiscWeather.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDiscWeather.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnDiscWeather.Location = new System.Drawing.Point(200, 15);
-            this.btnDiscWeather.Name = "btnDiscWeather";
-            this.btnDiscWeather.Size = new System.Drawing.Size(69, 23);
-            this.btnDiscWeather.TabIndex = 47;
-            this.btnDiscWeather.Text = "disconnect";
-            this.btnDiscWeather.UseVisualStyleBackColor = false;
-            this.btnDiscWeather.Click += new System.EventHandler(this.disconnect_weather);
-            // 
-            // btnConnectWeather
-            // 
-            this.btnConnectWeather.BackColor = System.Drawing.Color.Black;
-            this.btnConnectWeather.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConnectWeather.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnConnectWeather.Location = new System.Drawing.Point(66, 15);
-            this.btnConnectWeather.Name = "btnConnectWeather";
-            this.btnConnectWeather.Size = new System.Drawing.Size(70, 23);
-            this.btnConnectWeather.TabIndex = 46;
-            this.btnConnectWeather.Text = "connect";
-            this.btnConnectWeather.UseVisualStyleBackColor = false;
-            this.btnConnectWeather.Click += new System.EventHandler(this.connect_weather);
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label18.Location = new System.Drawing.Point(159, 91);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(31, 13);
-            this.label18.TabIndex = 45;
-            this.label18.Text = "SQM";
-            // 
-            // skyqtext
-            // 
-            this.skyqtext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.skyqtext.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.skyqtext.Location = new System.Drawing.Point(200, 88);
-            this.skyqtext.Name = "skyqtext";
-            this.skyqtext.Size = new System.Drawing.Size(69, 20);
-            this.skyqtext.TabIndex = 44;
-            // 
-            // cloud
-            // 
-            this.cloud.AutoSize = true;
-            this.cloud.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.cloud.Location = new System.Drawing.Point(157, 61);
-            this.cloud.Name = "cloud";
-            this.cloud.Size = new System.Drawing.Size(33, 13);
-            this.cloud.TabIndex = 43;
-            this.cloud.Text = "cloud";
-            // 
-            // cloudtext
-            // 
-            this.cloudtext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.cloudtext.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.cloudtext.Location = new System.Drawing.Point(200, 58);
-            this.cloudtext.Name = "cloudtext";
-            this.cloudtext.Size = new System.Drawing.Size(69, 20);
-            this.cloudtext.TabIndex = 42;
-            // 
-            // dew
-            // 
-            this.dew.AutoSize = true;
-            this.dew.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.dew.Location = new System.Drawing.Point(5, 151);
-            this.dew.Name = "dew";
-            this.dew.Size = new System.Drawing.Size(53, 13);
-            this.dew.TabIndex = 41;
-            this.dew.Text = "dew point";
-            // 
-            // dewpointtext
-            // 
-            this.dewpointtext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dewpointtext.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.dewpointtext.Location = new System.Drawing.Point(66, 148);
-            this.dewpointtext.Name = "dewpointtext";
-            this.dewpointtext.Size = new System.Drawing.Size(70, 20);
-            this.dewpointtext.TabIndex = 40;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label15.Location = new System.Drawing.Point(11, 121);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(45, 13);
-            this.label15.TabIndex = 39;
-            this.label15.Text = "humidity";
-            // 
-            // humidtext
-            // 
-            this.humidtext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.humidtext.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.humidtext.Location = new System.Drawing.Point(66, 118);
-            this.humidtext.Name = "humidtext";
-            this.humidtext.Size = new System.Drawing.Size(70, 20);
-            this.humidtext.TabIndex = 38;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label14.Location = new System.Drawing.Point(11, 91);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(47, 13);
-            this.label14.TabIndex = 37;
-            this.label14.Text = "pressure";
-            // 
-            // pressuretext
-            // 
-            this.pressuretext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.pressuretext.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.pressuretext.Location = new System.Drawing.Point(66, 88);
-            this.pressuretext.Name = "pressuretext";
-            this.pressuretext.Size = new System.Drawing.Size(70, 20);
-            this.pressuretext.TabIndex = 36;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label13.Location = new System.Drawing.Point(28, 61);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(30, 13);
-            this.label13.TabIndex = 35;
-            this.label13.Text = "temp";
-            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // temptext
-            // 
-            this.temptext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.temptext.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.temptext.Location = new System.Drawing.Point(66, 58);
-            this.temptext.Name = "temptext";
-            this.temptext.Size = new System.Drawing.Size(70, 20);
-            this.temptext.TabIndex = 34;
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.label10);
-            this.tabPage4.Controls.Add(this.btngraphsel);
-            this.tabPage4.Controls.Add(this.chart1);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(280, 311);
-            this.tabPage4.TabIndex = 4;
-            this.tabPage4.Text = "Graphs";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(18, 9);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(69, 13);
-            this.label10.TabIndex = 2;
-            this.label10.Text = "graph source";
-            // 
-            // btngraphsel
-            // 
-            this.btngraphsel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.btngraphsel.FormattingEnabled = true;
-            this.btngraphsel.Items.AddRange(new object[] {
-            "temp C",
-            "humidity %",
-            "dewpoint C",
-            "sky temp C",
-            "cloud cover %",
-            "SQM",
-            "pressure hPa",
-            "rain rate mm/h"});
-            this.btngraphsel.Location = new System.Drawing.Point(93, 6);
-            this.btngraphsel.Name = "btngraphsel";
-            this.btngraphsel.Size = new System.Drawing.Size(102, 21);
-            this.btngraphsel.TabIndex = 1;
-            this.btngraphsel.SelectedIndexChanged += new System.EventHandler(this.graphselect);
-            this.btngraphsel.Click += new System.EventHandler(this.graphselect);
-            // 
-            // chart1
-            // 
-            chartArea1.AxisX.LineWidth = 2;
-            chartArea1.AxisX.MajorGrid.Interval = 0D;
-            chartArea1.AxisX.MajorTickMark.Interval = 0D;
-            chartArea1.AxisY.LineWidth = 2;
-            chartArea1.AxisY.ScrollBar.Enabled = false;
-            chartArea1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            chartArea1.Name = "CloudCover";
-            this.chart1.ChartAreas.Add(chartArea1);
-            this.chart1.Location = new System.Drawing.Point(0, 56);
-            this.chart1.Name = "chart1";
-            series1.ChartArea = "CloudCover";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.IsVisibleInLegend = false;
-            series1.Name = "cloud";
-            series1.Points.Add(dataPoint1);
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(280, 255);
-            this.chart1.TabIndex = 0;
-            this.chart1.Text = "chart1";
-            this.chart1.Click += new System.EventHandler(this.graphselect);
-            this.chart1.DoubleClick += new System.EventHandler(this.graphselect);
-            this.chart1.MouseCaptureChanged += new System.EventHandler(this.graphselect);
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tabPage3.Controls.Add(this.label26);
-            this.tabPage3.Controls.Add(this.PAstatus);
-            this.tabPage3.Controls.Add(this.label19);
-            this.tabPage3.Controls.Add(this.label23);
-            this.tabPage3.Controls.Add(this.DEC2Text);
-            this.tabPage3.Controls.Add(this.label24);
-            this.tabPage3.Controls.Add(this.RA2text);
-            this.tabPage3.Controls.Add(this.label21);
-            this.tabPage3.Controls.Add(this.minus3);
-            this.tabPage3.Controls.Add(this.plus3);
-            this.tabPage3.Controls.Add(this.label17);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(280, 311);
-            this.tabPage3.TabIndex = 3;
-            this.tabPage3.Text = "Pol. Algn.";
+            this.PA.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.PA.Controls.Add(this.label26);
+            this.PA.Controls.Add(this.PAstatus);
+            this.PA.Controls.Add(this.label19);
+            this.PA.Controls.Add(this.label23);
+            this.PA.Controls.Add(this.DEC2Text);
+            this.PA.Controls.Add(this.label24);
+            this.PA.Controls.Add(this.RA2text);
+            this.PA.Controls.Add(this.label21);
+            this.PA.Controls.Add(this.minus3);
+            this.PA.Controls.Add(this.plus3);
+            this.PA.Controls.Add(this.label17);
+            this.PA.Location = new System.Drawing.Point(4, 22);
+            this.PA.Name = "PA";
+            this.PA.Padding = new System.Windows.Forms.Padding(3);
+            this.PA.Size = new System.Drawing.Size(280, 311);
+            this.PA.TabIndex = 3;
+            this.PA.Text = "Pol. Algn.";
             // 
             // label26
             // 
@@ -931,30 +661,30 @@
             this.label26.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label26.Location = new System.Drawing.Point(29, 257);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(36, 13);
+            this.label26.Size = new System.Drawing.Size(67, 13);
             this.label26.TabIndex = 60;
-            this.label26.Text = "mount";
+            this.label26.Text = "mount status";
             // 
             // PAstatus
             // 
             this.PAstatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.PAstatus.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.PAstatus.Location = new System.Drawing.Point(71, 254);
+            this.PAstatus.Location = new System.Drawing.Point(102, 254);
             this.PAstatus.Name = "PAstatus";
-            this.PAstatus.Size = new System.Drawing.Size(191, 20);
+            this.PAstatus.Size = new System.Drawing.Size(160, 20);
             this.PAstatus.TabIndex = 59;
             this.PAstatus.WordWrap = false;
             // 
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.ForeColor = System.Drawing.Color.Yellow;
             this.label19.Location = new System.Drawing.Point(8, 13);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(245, 78);
+            this.label19.Size = new System.Drawing.Size(244, 51);
             this.label19.TabIndex = 58;
-            this.label19.Text = "PoleMaster/SharpCap Utility\r\n\r\nSET MOUNT LIMITS BEFORE USING\r\n\r\n\'start\' - initial" +
-    "ly finds home and then moves -45 deg.\r\n\'45 deg\' - moves +45 deg. ";
+            this.label19.Text = "PoleMaster/SharpCap Utility\r\n\r\nSET MOUNT LIMITS BEFORE USING";
             // 
             // label23
             // 
@@ -1013,7 +743,7 @@
             this.minus3.Name = "minus3";
             this.minus3.Size = new System.Drawing.Size(60, 30);
             this.minus3.TabIndex = 46;
-            this.minus3.Text = "45 deg";
+            this.minus3.Text = "Next";
             this.minus3.UseVisualStyleBackColor = true;
             this.minus3.Click += new System.EventHandler(this.Plus3Ra);
             // 
@@ -1023,7 +753,8 @@
             this.plus3.Name = "plus3";
             this.plus3.Size = new System.Drawing.Size(60, 30);
             this.plus3.TabIndex = 45;
-            this.plus3.Text = "start";
+            this.plus3.Text = "Start";
+            this.toolTip1.SetToolTip(this.plus3, resources.GetString("plus3.ToolTip"));
             this.plus3.UseVisualStyleBackColor = true;
             this.plus3.Click += new System.EventHandler(this.PMStart);
             // 
@@ -1033,72 +764,380 @@
             this.label17.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label17.Location = new System.Drawing.Point(27, 117);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(92, 13);
+            this.label17.Size = new System.Drawing.Size(116, 13);
             this.label17.TabIndex = 44;
-            this.label17.Text = "1) starting position";
+            this.label17.Text = "1) goto starting position";
             this.label17.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // tabPage2
+            // environ
             // 
-            this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.tabPage2.Controls.Add(this.label22);
-            this.tabPage2.Controls.Add(this.slewrate);
-            this.tabPage2.Controls.Add(this.label20);
-            this.tabPage2.Controls.Add(this.GuideRateDEC);
-            this.tabPage2.Controls.Add(this.label25);
-            this.tabPage2.Controls.Add(this.resetbtn);
-            this.tabPage2.Controls.Add(this.btnConnWeather);
-            this.tabPage2.Controls.Add(this.btnWeathChoose);
-            this.tabPage2.Controls.Add(this.label12);
-            this.tabPage2.Controls.Add(this.label11);
-            this.tabPage2.Controls.Add(this.btnConnectSetup);
-            this.tabPage2.Controls.Add(this.elevate);
-            this.tabPage2.Controls.Add(this.ElevationIP);
-            this.tabPage2.Controls.Add(this.btnInitialize);
-            this.tabPage2.Controls.Add(this.label9);
-            this.tabPage2.Controls.Add(this.btnChooser);
-            this.tabPage2.Controls.Add(this.label8);
-            this.tabPage2.Controls.Add(this.label7);
-            this.tabPage2.Controls.Add(this.LongitudeIP);
-            this.tabPage2.Controls.Add(this.GuideRateRA);
-            this.tabPage2.Controls.Add(this.LatitudeIP);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(280, 311);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Setup";
+            this.environ.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.environ.Controls.Add(this.btnWeathChoose);
+            this.environ.Controls.Add(this.rain);
+            this.environ.Controls.Add(this.rainratetext);
+            this.environ.Controls.Add(this.label16);
+            this.environ.Controls.Add(this.skytemptext);
+            this.environ.Controls.Add(this.btnDiscWeather);
+            this.environ.Controls.Add(this.btnConnectWeather);
+            this.environ.Controls.Add(this.label18);
+            this.environ.Controls.Add(this.skyqtext);
+            this.environ.Controls.Add(this.cloud);
+            this.environ.Controls.Add(this.cloudtext);
+            this.environ.Controls.Add(this.dew);
+            this.environ.Controls.Add(this.dewpointtext);
+            this.environ.Controls.Add(this.label15);
+            this.environ.Controls.Add(this.humidtext);
+            this.environ.Controls.Add(this.label14);
+            this.environ.Controls.Add(this.pressuretext);
+            this.environ.Controls.Add(this.label13);
+            this.environ.Controls.Add(this.temptext);
+            this.environ.Location = new System.Drawing.Point(4, 22);
+            this.environ.Name = "environ";
+            this.environ.Padding = new System.Windows.Forms.Padding(3);
+            this.environ.Size = new System.Drawing.Size(280, 311);
+            this.environ.TabIndex = 2;
+            this.environ.Text = "Weather";
+            // 
+            // btnWeathChoose
+            // 
+            this.btnWeathChoose.BackColor = System.Drawing.Color.Black;
+            this.btnWeathChoose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnWeathChoose.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnWeathChoose.Location = new System.Drawing.Point(162, 15);
+            this.btnWeathChoose.Name = "btnWeathChoose";
+            this.btnWeathChoose.Size = new System.Drawing.Size(64, 23);
+            this.btnWeathChoose.TabIndex = 52;
+            this.btnWeathChoose.Text = "chooser";
+            this.btnWeathChoose.UseVisualStyleBackColor = false;
+            // 
+            // rain
+            // 
+            this.rain.AutoSize = true;
+            this.rain.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.rain.Location = new System.Drawing.Point(148, 198);
+            this.rain.Name = "rain";
+            this.rain.Size = new System.Drawing.Size(45, 13);
+            this.rain.TabIndex = 51;
+            this.rain.Text = "rain rate";
+            // 
+            // rainratetext
+            // 
+            this.rainratetext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.rainratetext.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.rainratetext.Location = new System.Drawing.Point(200, 195);
+            this.rainratetext.Name = "rainratetext";
+            this.rainratetext.Size = new System.Drawing.Size(69, 20);
+            this.rainratetext.TabIndex = 50;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label16.Location = new System.Drawing.Point(155, 168);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(33, 13);
+            this.label16.TabIndex = 49;
+            this.label16.Text = "sky C";
+            // 
+            // skytemptext
+            // 
+            this.skytemptext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.skytemptext.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.skytemptext.Location = new System.Drawing.Point(200, 165);
+            this.skytemptext.Name = "skytemptext";
+            this.skytemptext.Size = new System.Drawing.Size(69, 20);
+            this.skytemptext.TabIndex = 48;
+            // 
+            // btnDiscWeather
+            // 
+            this.btnDiscWeather.BackColor = System.Drawing.Color.Black;
+            this.btnDiscWeather.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDiscWeather.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnDiscWeather.Location = new System.Drawing.Point(67, 55);
+            this.btnDiscWeather.Name = "btnDiscWeather";
+            this.btnDiscWeather.Size = new System.Drawing.Size(69, 23);
+            this.btnDiscWeather.TabIndex = 47;
+            this.btnDiscWeather.Text = "disconnect";
+            this.btnDiscWeather.UseVisualStyleBackColor = false;
+            this.btnDiscWeather.Click += new System.EventHandler(this.disconnect_weather);
+            // 
+            // btnConnectWeather
+            // 
+            this.btnConnectWeather.BackColor = System.Drawing.Color.Black;
+            this.btnConnectWeather.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConnectWeather.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnConnectWeather.Location = new System.Drawing.Point(66, 15);
+            this.btnConnectWeather.Name = "btnConnectWeather";
+            this.btnConnectWeather.Size = new System.Drawing.Size(70, 23);
+            this.btnConnectWeather.TabIndex = 46;
+            this.btnConnectWeather.Text = "connect";
+            this.btnConnectWeather.UseVisualStyleBackColor = false;
+            this.btnConnectWeather.Click += new System.EventHandler(this.connect_weather);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label18.Location = new System.Drawing.Point(159, 138);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(31, 13);
+            this.label18.TabIndex = 45;
+            this.label18.Text = "SQM";
+            // 
+            // skyqtext
+            // 
+            this.skyqtext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.skyqtext.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.skyqtext.Location = new System.Drawing.Point(200, 135);
+            this.skyqtext.Name = "skyqtext";
+            this.skyqtext.Size = new System.Drawing.Size(69, 20);
+            this.skyqtext.TabIndex = 44;
+            // 
+            // cloud
+            // 
+            this.cloud.AutoSize = true;
+            this.cloud.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.cloud.Location = new System.Drawing.Point(157, 108);
+            this.cloud.Name = "cloud";
+            this.cloud.Size = new System.Drawing.Size(33, 13);
+            this.cloud.TabIndex = 43;
+            this.cloud.Text = "cloud";
+            // 
+            // cloudtext
+            // 
+            this.cloudtext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.cloudtext.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.cloudtext.Location = new System.Drawing.Point(200, 105);
+            this.cloudtext.Name = "cloudtext";
+            this.cloudtext.Size = new System.Drawing.Size(69, 20);
+            this.cloudtext.TabIndex = 42;
+            // 
+            // dew
+            // 
+            this.dew.AutoSize = true;
+            this.dew.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dew.Location = new System.Drawing.Point(5, 198);
+            this.dew.Name = "dew";
+            this.dew.Size = new System.Drawing.Size(53, 13);
+            this.dew.TabIndex = 41;
+            this.dew.Text = "dew point";
+            // 
+            // dewpointtext
+            // 
+            this.dewpointtext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dewpointtext.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dewpointtext.Location = new System.Drawing.Point(66, 195);
+            this.dewpointtext.Name = "dewpointtext";
+            this.dewpointtext.Size = new System.Drawing.Size(70, 20);
+            this.dewpointtext.TabIndex = 40;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label15.Location = new System.Drawing.Point(11, 168);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(45, 13);
+            this.label15.TabIndex = 39;
+            this.label15.Text = "humidity";
+            // 
+            // humidtext
+            // 
+            this.humidtext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.humidtext.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.humidtext.Location = new System.Drawing.Point(66, 165);
+            this.humidtext.Name = "humidtext";
+            this.humidtext.Size = new System.Drawing.Size(70, 20);
+            this.humidtext.TabIndex = 38;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label14.Location = new System.Drawing.Point(11, 138);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(47, 13);
+            this.label14.TabIndex = 37;
+            this.label14.Text = "pressure";
+            // 
+            // pressuretext
+            // 
+            this.pressuretext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.pressuretext.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.pressuretext.Location = new System.Drawing.Point(66, 135);
+            this.pressuretext.Name = "pressuretext";
+            this.pressuretext.Size = new System.Drawing.Size(70, 20);
+            this.pressuretext.TabIndex = 36;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label13.Location = new System.Drawing.Point(28, 108);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(30, 13);
+            this.label13.TabIndex = 35;
+            this.label13.Text = "temp";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // temptext
+            // 
+            this.temptext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.temptext.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.temptext.Location = new System.Drawing.Point(66, 105);
+            this.temptext.Name = "temptext";
+            this.temptext.Size = new System.Drawing.Size(70, 20);
+            this.temptext.TabIndex = 34;
+            // 
+            // graphs
+            // 
+            this.graphs.Controls.Add(this.resetbtn);
+            this.graphs.Controls.Add(this.label10);
+            this.graphs.Controls.Add(this.btngraphsel);
+            this.graphs.Controls.Add(this.chart1);
+            this.graphs.Location = new System.Drawing.Point(4, 22);
+            this.graphs.Name = "graphs";
+            this.graphs.Padding = new System.Windows.Forms.Padding(3);
+            this.graphs.Size = new System.Drawing.Size(280, 311);
+            this.graphs.TabIndex = 4;
+            this.graphs.Text = "Graphs";
+            this.graphs.UseVisualStyleBackColor = true;
+            // 
+            // resetbtn
+            // 
+            this.resetbtn.ForeColor = System.Drawing.Color.Black;
+            this.resetbtn.Location = new System.Drawing.Point(151, 288);
+            this.resetbtn.Name = "resetbtn";
+            this.resetbtn.Size = new System.Drawing.Size(93, 23);
+            this.resetbtn.TabIndex = 45;
+            this.resetbtn.Text = "clear chart";
+            this.resetbtn.UseVisualStyleBackColor = true;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(18, 9);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(69, 13);
+            this.label10.TabIndex = 2;
+            this.label10.Text = "graph source";
+            // 
+            // btngraphsel
+            // 
+            this.btngraphsel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.btngraphsel.FormattingEnabled = true;
+            this.btngraphsel.Items.AddRange(new object[] {
+            "temp C",
+            "humidity %",
+            "dewpoint C",
+            "sky temp C",
+            "cloud cover %",
+            "SQM",
+            "pressure hPa",
+            "rain rate mm/h"});
+            this.btngraphsel.Location = new System.Drawing.Point(93, 6);
+            this.btngraphsel.Name = "btngraphsel";
+            this.btngraphsel.Size = new System.Drawing.Size(102, 21);
+            this.btngraphsel.TabIndex = 1;
+            this.btngraphsel.SelectedIndexChanged += new System.EventHandler(this.graphselect);
+            this.btngraphsel.Click += new System.EventHandler(this.graphselect);
+            // 
+            // chart1
+            // 
+            chartArea1.AxisX.LineWidth = 2;
+            chartArea1.AxisX.MajorGrid.Interval = 0D;
+            chartArea1.AxisX.MajorTickMark.Interval = 0D;
+            chartArea1.AxisY.LineWidth = 2;
+            chartArea1.AxisY.ScrollBar.Enabled = false;
+            chartArea1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            chartArea1.Name = "CloudCover";
+            this.chart1.ChartAreas.Add(chartArea1);
+            this.chart1.Location = new System.Drawing.Point(0, 33);
+            this.chart1.Name = "chart1";
+            series1.ChartArea = "CloudCover";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.IsVisibleInLegend = false;
+            series1.Name = "cloud";
+            series1.Points.Add(dataPoint1);
+            this.chart1.Series.Add(series1);
+            this.chart1.Size = new System.Drawing.Size(280, 270);
+            this.chart1.TabIndex = 0;
+            this.chart1.Text = "chart1";
+            this.chart1.Click += new System.EventHandler(this.graphselect);
+            this.chart1.DoubleClick += new System.EventHandler(this.graphselect);
+            this.chart1.MouseCaptureChanged += new System.EventHandler(this.graphselect);
+            // 
+            // setup
+            // 
+            this.setup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.setup.Controls.Add(this.dupbtnDisconnect);
+            this.setup.Controls.Add(this.label22);
+            this.setup.Controls.Add(this.slewrate);
+            this.setup.Controls.Add(this.label20);
+            this.setup.Controls.Add(this.GuideRateDEC);
+            this.setup.Controls.Add(this.label11);
+            this.setup.Controls.Add(this.btnConnectSetup);
+            this.setup.Controls.Add(this.elevate);
+            this.setup.Controls.Add(this.ElevationIP);
+            this.setup.Controls.Add(this.btnInitialize);
+            this.setup.Controls.Add(this.label9);
+            this.setup.Controls.Add(this.btnChooser);
+            this.setup.Controls.Add(this.label8);
+            this.setup.Controls.Add(this.label7);
+            this.setup.Controls.Add(this.LongitudeIP);
+            this.setup.Controls.Add(this.GuideRateRA);
+            this.setup.Controls.Add(this.LatitudeIP);
+            this.setup.Location = new System.Drawing.Point(4, 22);
+            this.setup.Name = "setup";
+            this.setup.Padding = new System.Windows.Forms.Padding(3);
+            this.setup.Size = new System.Drawing.Size(280, 311);
+            this.setup.TabIndex = 1;
+            this.setup.Text = "Mount Setup";
+            // 
+            // dupbtnDisconnect
+            // 
+            this.dupbtnDisconnect.BackColor = System.Drawing.Color.Black;
+            this.dupbtnDisconnect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.dupbtnDisconnect.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dupbtnDisconnect.Location = new System.Drawing.Point(192, 12);
+            this.dupbtnDisconnect.Name = "dupbtnDisconnect";
+            this.dupbtnDisconnect.Size = new System.Drawing.Size(73, 23);
+            this.dupbtnDisconnect.TabIndex = 49;
+            this.dupbtnDisconnect.Text = "disconnect";
+            this.dupbtnDisconnect.UseVisualStyleBackColor = false;
+            this.dupbtnDisconnect.Click += new System.EventHandler(this.disconnect_mount);
             // 
             // label22
             // 
             this.label22.AutoSize = true;
             this.label22.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label22.Location = new System.Drawing.Point(144, 158);
+            this.label22.Location = new System.Drawing.Point(146, 177);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(30, 13);
+            this.label22.Size = new System.Drawing.Size(49, 13);
             this.label22.TabIndex = 48;
-            this.label22.Text = "Slew";
+            this.label22.Text = "slew rate";
             // 
             // slewrate
             // 
             this.slewrate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.slewrate.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.slewrate.Location = new System.Drawing.Point(186, 155);
+            this.slewrate.Location = new System.Drawing.Point(201, 174);
             this.slewrate.Name = "slewrate";
             this.slewrate.Size = new System.Drawing.Size(64, 20);
             this.slewrate.TabIndex = 47;
             this.slewrate.Text = "WIP";
             this.slewrate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.slewrate.TextChanged += new System.EventHandler(this.slewrate_TextChanged);
             // 
             // label20
             // 
             this.label20.AutoSize = true;
             this.label20.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label20.Location = new System.Drawing.Point(11, 80);
+            this.label20.Location = new System.Drawing.Point(38, 94);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(91, 13);
+            this.label20.Size = new System.Drawing.Size(97, 13);
             this.label20.TabIndex = 45;
-            this.label20.Text = "DEC rate 0.1-1.0x";
+            this.label20.Text = "DEC rate 0.25-1.0x";
             // 
             // GuideRateDEC
             // 
@@ -1106,16 +1145,21 @@
             this.GuideRateDEC.DecimalPlaces = 2;
             this.GuideRateDEC.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.GuideRateDEC.Increment = new decimal(new int[] {
-            5,
+            25,
             0,
             0,
             131072});
-            this.GuideRateDEC.Location = new System.Drawing.Point(108, 78);
+            this.GuideRateDEC.Location = new System.Drawing.Point(136, 92);
             this.GuideRateDEC.Maximum = new decimal(new int[] {
             10,
             0,
             0,
             65536});
+            this.GuideRateDEC.Minimum = new decimal(new int[] {
+            25,
+            0,
+            0,
+            131072});
             this.GuideRateDEC.Name = "GuideRateDEC";
             this.GuideRateDEC.Size = new System.Drawing.Size(64, 20);
             this.GuideRateDEC.TabIndex = 46;
@@ -1126,74 +1170,15 @@
             0,
             65536});
             // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label25.Location = new System.Drawing.Point(40, 281);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(62, 13);
-            this.label25.TabIndex = 44;
-            this.label25.Text = "Reset chart";
-            // 
-            // resetbtn
-            // 
-            this.resetbtn.Location = new System.Drawing.Point(126, 276);
-            this.resetbtn.Name = "resetbtn";
-            this.resetbtn.Size = new System.Drawing.Size(64, 23);
-            this.resetbtn.TabIndex = 43;
-            this.resetbtn.Text = "clear";
-            this.resetbtn.UseVisualStyleBackColor = true;
-            this.resetbtn.Click += new System.EventHandler(this.resetparams);
-            // 
-            // btnConnWeather
-            // 
-            this.btnConnWeather.BackColor = System.Drawing.Color.Black;
-            this.btnConnWeather.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConnWeather.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnConnWeather.Location = new System.Drawing.Point(183, 239);
-            this.btnConnWeather.Name = "btnConnWeather";
-            this.btnConnWeather.Size = new System.Drawing.Size(64, 23);
-            this.btnConnWeather.TabIndex = 41;
-            this.btnConnWeather.Text = "connect";
-            this.btnConnWeather.UseVisualStyleBackColor = false;
-            this.btnConnWeather.Click += new System.EventHandler(this.connect_weather);
-            // 
-            // btnWeathChoose
-            // 
-            this.btnWeathChoose.BackColor = System.Drawing.Color.Black;
-            this.btnWeathChoose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnWeathChoose.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnWeathChoose.Location = new System.Drawing.Point(100, 239);
-            this.btnWeathChoose.Name = "btnWeathChoose";
-            this.btnWeathChoose.Size = new System.Drawing.Size(64, 23);
-            this.btnWeathChoose.TabIndex = 1;
-            this.btnWeathChoose.Text = "chooser";
-            this.btnWeathChoose.UseVisualStyleBackColor = false;
-            this.btnWeathChoose.Click += new System.EventHandler(this.choose_weather);
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.Color.Gold;
-            this.label12.Location = new System.Drawing.Point(30, 244);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(58, 16);
-            this.label12.TabIndex = 39;
-            this.label12.Text = "Weather";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.Gold;
-            this.label11.Location = new System.Drawing.Point(49, 17);
+            this.label11.Location = new System.Drawing.Point(30, 15);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(43, 16);
+            this.label11.Size = new System.Drawing.Size(0, 16);
             this.label11.TabIndex = 38;
-            this.label11.Text = "Mount";
             this.label11.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // btnConnectSetup
@@ -1201,7 +1186,7 @@
             this.btnConnectSetup.BackColor = System.Drawing.Color.Black;
             this.btnConnectSetup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConnectSetup.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnConnectSetup.Location = new System.Drawing.Point(191, 12);
+            this.btnConnectSetup.Location = new System.Drawing.Point(107, 12);
             this.btnConnectSetup.Name = "btnConnectSetup";
             this.btnConnectSetup.Size = new System.Drawing.Size(64, 23);
             this.btnConnectSetup.TabIndex = 37;
@@ -1213,17 +1198,17 @@
             // 
             this.elevate.AutoSize = true;
             this.elevate.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.elevate.Location = new System.Drawing.Point(13, 158);
+            this.elevate.Location = new System.Drawing.Point(18, 177);
             this.elevate.Name = "elevate";
-            this.elevate.Size = new System.Drawing.Size(37, 13);
+            this.elevate.Size = new System.Drawing.Size(50, 13);
             this.elevate.TabIndex = 36;
-            this.elevate.Text = "(Elev.)";
+            this.elevate.Text = "elevation";
             // 
             // ElevationIP
             // 
             this.ElevationIP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ElevationIP.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ElevationIP.Location = new System.Drawing.Point(56, 155);
+            this.ElevationIP.Location = new System.Drawing.Point(71, 174);
             this.ElevationIP.Name = "ElevationIP";
             this.ElevationIP.Size = new System.Drawing.Size(64, 20);
             this.ElevationIP.TabIndex = 35;
@@ -1240,22 +1225,22 @@
             this.MaximumSize = new System.Drawing.Size(305, 380);
             this.MinimumSize = new System.Drawing.Size(305, 340);
             this.Name = "ControlForm";
-            this.Text = "WD20 utility v.5.0";
+            this.Text = "Warp Utility v.5.1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.GuideRateRA)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.JogValIP)).EndInit();
             this.Application.ResumeLayout(false);
             this.Control.ResumeLayout(false);
             this.Control.PerformLayout();
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
+            this.PA.ResumeLayout(false);
+            this.PA.PerformLayout();
+            this.environ.ResumeLayout(false);
+            this.environ.PerformLayout();
+            this.graphs.ResumeLayout(false);
+            this.graphs.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
+            this.setup.ResumeLayout(false);
+            this.setup.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GuideRateDEC)).EndInit();
             this.ResumeLayout(false);
 
@@ -1295,17 +1280,14 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TabControl Application;
         private System.Windows.Forms.TabPage Control;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage setup;
         private System.Windows.Forms.Label elevate;
         private System.Windows.Forms.TextBox ElevationIP;
         private System.Windows.Forms.Button btnConnectDup;
         private System.Windows.Forms.Button btnHome;
         private System.Windows.Forms.Button btnConnectSetup;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Button btnConnWeather;
-        private System.Windows.Forms.Button btnWeathChoose;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage environ;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox temptext;
         private System.Windows.Forms.Label label18;
@@ -1324,7 +1306,7 @@
         private System.Windows.Forms.TextBox skytemptext;
         private System.Windows.Forms.Label rain;
         private System.Windows.Forms.TextBox rainratetext;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage PA;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Button minus3;
         private System.Windows.Forms.Button plus3;
@@ -1333,9 +1315,7 @@
         private System.Windows.Forms.TextBox DEC2Text;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.TextBox RA2text;
-        private System.Windows.Forms.Button resetbtn;
-        private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.TabPage graphs;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox btngraphsel;
@@ -1350,6 +1330,10 @@
         private System.Windows.Forms.Button IndHome;
         private System.Windows.Forms.Button IndTrack;
         private System.Windows.Forms.Button IndSlew;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Button resetbtn;
+        private System.Windows.Forms.Button btnWeathChoose;
+        private System.Windows.Forms.Button dupbtnDisconnect;
     }
 }
 

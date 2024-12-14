@@ -29,6 +29,7 @@ using ASCOM;
 // v4.5 - added some delays to homing and tracking to accommodate Onstep mounts.
 // v4.7 - added double homing for Onstep mounts, in case it is trying to home over 90 degrees.
 // v5.0 - small modifications and improvements to special case documentation- stable version
+// v5.1 - mostly cosmetic changes to the tab and button layouts
 
 namespace MountControl
 {
@@ -116,7 +117,6 @@ namespace MountControl
             if (weatherId != null)
             {
                 btnConnectWeather.ForeColor = Color.LightGray;
-                btnConnWeather.ForeColor = Color.LightGray;
                 //set up chart
                 // need to move y-axis setting dependendent on series
                 chart1.Series.Clear(); //remove default series
@@ -130,7 +130,6 @@ namespace MountControl
             else
             {
                 btnConnectWeather.ForeColor = Color.Gray;
-                btnConnWeather.ForeColor = Color.Gray;
             }
         }
         private void choose_mount(object sender, EventArgs e)
@@ -164,11 +163,11 @@ namespace MountControl
                 this.filewrite();
                 if (weatherId != null)
                 {
-                    btnConnWeather.ForeColor = Color.LightGray;
+                    btnConnectWeather.ForeColor = Color.LightGray;
                 }
                 else
                 {
-                    btnConnWeather.ForeColor = Color.Gray;
+                    btnConnectWeather.ForeColor = Color.Gray;
                 }
 
             }
@@ -195,6 +194,8 @@ namespace MountControl
                     btnConnectDup.ForeColor = Color.LightGray;
                     btnDisconnect.BackColor = Color.DarkRed;
                     btnDisconnect.ForeColor = Color.LightGray;
+                    dupbtnDisconnect.BackColor = Color.DarkRed;
+                    dupbtnDisconnect.ForeColor = Color.LightGray;
                     btnHome.ForeColor = Color.LightGray;
                     btnAbort.ForeColor = Color.Black;
                     btnPark.ForeColor = Color.LightGray;
@@ -278,6 +279,8 @@ namespace MountControl
                     btnConnectDup.BackColor = Color.Black;
                     btnDisconnect.ForeColor = Color.Gray;
                     btnDisconnect.BackColor = Color.Black;
+                    dupbtnDisconnect.BackColor = Color.Black;
+                    dupbtnDisconnect.ForeColor = Color.Gray;
                     IndHome.ForeColor = Color.Gray;
                     IndPark.ForeColor = Color.Gray;
                     IndSlew.ForeColor = Color.Gray;
@@ -522,8 +525,6 @@ namespace MountControl
                     dewpointtext.Text = "  connected";
                     btnConnectWeather.BackColor = Color.DarkGreen;
                     btnConnectWeather.ForeColor = Color.LightGray;
-                    btnConnWeather.ForeColor = Color.LightGray;
-                    btnConnWeather.BackColor = Color.DarkGreen;
                     btnDiscWeather.ForeColor = Color.LightGray;
                     btnDiscWeather.BackColor = Color.DarkRed;
                     humidtext.ForeColor = Color.LightGreen;
@@ -651,7 +652,7 @@ namespace MountControl
                         mount.Tracking = true;
                         Thread.Sleep(2000);
                     }
-                    mount.FindHome();
+                    mount.FindHome(); // home or second home, to be sure for WD mount
                     mount.Tracking = true;                                    
                     PAstatus.Text = " homing";
                     statusbox.Text = " homing";
@@ -670,7 +671,6 @@ namespace MountControl
                     PAstatus.Text = " tracking";
                     statusbox.Text = " tracking";
                 }
-
                 else System.Windows.Forms.MessageBox.Show("Mount not connected");
             }
             catch (Exception)
@@ -687,7 +687,7 @@ namespace MountControl
                 {
                     PAstatus.Text = " slewing";
                     statusbox.Text = " slewing";
-                    mount.MoveAxis(0,3);
+                    mount.MoveAxis(0,3);  // 3 degrees/sec
                     Thread.Sleep(15000);
                     mount.MoveAxis(0, 0);
                     mount.Tracking = true;
@@ -916,8 +916,6 @@ namespace MountControl
                     btnWeathChoose.BackColor = Color.Black;
                     btnConnectWeather.ForeColor = Color.LightGray;
                     btnConnectWeather.BackColor = Color.Black;
-                    btnConnWeather.ForeColor = Color.LightGray;
-                    btnConnWeather.BackColor = Color.Black;
                     btnDiscWeather.ForeColor = Color.Gray;
                     btnDiscWeather.BackColor = Color.Black;
                 }
@@ -927,6 +925,12 @@ namespace MountControl
                 statusbox.AppendText(Environment.NewLine + "disconnect weather error");
             }
         }
+
+        private void slewrate_TextChanged(object sender, EventArgs e)
+        {
+            statusbox.Text = " not yet implemented";
+        }
+
         private void west(object sender, EventArgs e)
         {
             try
