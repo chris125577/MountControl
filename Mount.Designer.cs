@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlForm));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 0D);
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint2 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 0D);
             this.btnChooser = new System.Windows.Forms.Button();
             this.btnPark = new System.Windows.Forms.Button();
             this.btnUnpark = new System.Windows.Forms.Button();
@@ -1045,22 +1045,22 @@
             // 
             // chart1
             // 
-            chartArea1.AxisX.LineWidth = 2;
-            chartArea1.AxisX.MajorGrid.Interval = 0D;
-            chartArea1.AxisX.MajorTickMark.Interval = 0D;
-            chartArea1.AxisY.LineWidth = 2;
-            chartArea1.AxisY.ScrollBar.Enabled = false;
-            chartArea1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            chartArea1.Name = "CloudCover";
-            this.chart1.ChartAreas.Add(chartArea1);
+            chartArea2.AxisX.LineWidth = 2;
+            chartArea2.AxisX.MajorGrid.Interval = 0D;
+            chartArea2.AxisX.MajorTickMark.Interval = 0D;
+            chartArea2.AxisY.LineWidth = 2;
+            chartArea2.AxisY.ScrollBar.Enabled = false;
+            chartArea2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            chartArea2.Name = "CloudCover";
+            this.chart1.ChartAreas.Add(chartArea2);
             this.chart1.Location = new System.Drawing.Point(0, 33);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "CloudCover";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.IsVisibleInLegend = false;
-            series1.Name = "cloud";
-            series1.Points.Add(dataPoint1);
-            this.chart1.Series.Add(series1);
+            series2.ChartArea = "CloudCover";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.IsVisibleInLegend = false;
+            series2.Name = "cloud";
+            series2.Points.Add(dataPoint2);
+            this.chart1.Series.Add(series2);
             this.chart1.Size = new System.Drawing.Size(280, 270);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";

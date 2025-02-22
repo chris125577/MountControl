@@ -1,13 +1,14 @@
-﻿using ASCOM.DeviceInterface;
-using ASCOM.Utilities;
-using ASCOM.DriverAccess;
+﻿//using ASCOM.Com;
+using ASCOM.Com.DriverAccess;
+using ASCOM.Utilities.Interfaces;
 using System;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using System.Threading;
 using System.Linq;
-using ASCOM;
+using ASCOM.Common;
+
 
 // simple windows form-based control panel for telescope mount
 // can be used as template for more customized version
@@ -36,8 +37,10 @@ namespace MountControl
     public partial class ControlForm : Form
     {
         private bool mountconnected, weatherconnected;
+        private bool tempsense, hpasense, rhsense, cloudsense, sqsense, dewsense, rainsense, irsense;
         private Telescope mount;
         private ObservingConditions weather; // ASCOM weather
+        private ASCOM.Utilities.Chooser mountchoice, weatherchoice;
         private string mountId, weatherId;
         private double jogvalue = 1; // minutes of arc
         private double ra, dec, az, alt;
@@ -67,6 +70,13 @@ namespace MountControl
             InitializeComponent();
             mountId = null;
             weatherId = null;
+            rainsense = true;
+            tempsense = true;
+            dewsense = true;
+            rhsense = true;
+            cloudsense = true;
+            hpasense = true;
+
             // initialise data and status fields
             statusbox.Text = " not connected";
             PAstatus.Text = " not connected";
@@ -136,7 +146,9 @@ namespace MountControl
         {
             try
             {
-                mountId = Telescope.Choose(mountId);
+                mountchoice = new ASCOM.Utilities.Chooser();
+                mountchoice.DeviceType = "Telescope";
+                mountId = mountchoice.Choose(mountId);
                 this.filewrite();
                 if (mountId != null)
                 {
@@ -159,7 +171,9 @@ namespace MountControl
         {
             try
             {
-                weatherId = ObservingConditions.Choose(weatherId);
+                weatherchoice = new ASCOM.Utilities.Chooser(); 
+                weatherchoice.DeviceType = "ObservingConditions";
+                weatherId = weatherchoice.Choose(weatherId);
                 this.filewrite();
                 if (weatherId != null)
                 {
@@ -184,7 +198,8 @@ namespace MountControl
                 if (mountId != null)
                 {
                     mount = new Telescope(mountId);
-                    mount.Connected = true;   // old synchronous method of connecting
+                    mount.Connect();
+                    //mount.Connected = true;
                     mountconnected = true;
                     statusbox.Text = " connected";
                     PAstatus.Text = " connected";
@@ -210,8 +225,8 @@ namespace MountControl
                     btnInitialize.ForeColor = Color.LightGray;
                     btnInitialize.ForeColor = Color.Gray;
                     // update text boxes with values from mount
-                    GuideRateRA.Value = (decimal)Math.Round(mount.GuideRateDeclination / sidereal, 3);
-                    GuideRateDEC.Value = (decimal)Math.Round(mount.GuideRateDeclination / sidereal, 3);
+                    GuideRateRA.Value = (decimal)Math.Round(mount.GuideRateDeclination / sidereal, 2);
+                    GuideRateDEC.Value = (decimal)Math.Round(mount.GuideRateDeclination / sidereal, 2);
                     LongitudeIP.Text = Math.Round(mount.SiteLongitude,4).ToString();
                     LatitudeIP.Text = Math.Round(mount.SiteLatitude,4).ToString();
                     ElevationIP.Text = Math.Round(mount.SiteElevation,2).ToString();
@@ -222,7 +237,6 @@ namespace MountControl
                 }
                 else
                 {
-                    mountconnected = false;
                     statusbox.Text = " not connected";
                     PAstatus.Text = " not connected";
                 }
@@ -247,7 +261,7 @@ namespace MountControl
             }
             catch
             {
-                statusbox.Text = " comms error";
+                statusbox.Text = " jog error";
             }
         }
         private void disconnect_mount(object sender, EventArgs e)
@@ -256,7 +270,8 @@ namespace MountControl
             {
                 if (mountconnected)
                 {
-                    mount.Connected = false;  // disconnect mount (synchronously)
+                    //mount.Connected = false;  // disconnect mount (synchronously)
+                    mount.Disconnect();
                     mountconnected = false;
                     statusbox.Text = " not connected";
                     PAstatus.Text = " not connected";
@@ -296,7 +311,6 @@ namespace MountControl
                 System.Windows.Forms.MessageBox.Show("Mount did not disconnect");
             }
         }
-
         // setup allows one to override settings from mount
         private void init_mount(object sender, EventArgs e)
         {
@@ -424,7 +438,7 @@ namespace MountControl
             }
             catch
             {
-                statusbox.Text = " comms error";
+                statusbox.Text = " home error";
             }
         }
         private void track_on(object sender, EventArgs e)
@@ -502,7 +516,7 @@ namespace MountControl
             }
             catch
             {
-                statusbox.Text = " comms error";
+                statusbox.Text = " abort error";
             }
         }
         private void connect_weather(object sender, EventArgs e)
@@ -513,16 +527,23 @@ namespace MountControl
                 {
                     weather = new ObservingConditions(weatherId);
                     weather.Connect();   // asynch method
-                   // weather.Connected = true;   // synch method
-                    weatherconnected = true;  // local status
-                    humidtext.Text = " connected";
-                    pressuretext.Text = " connected";
-                    temptext.Text = " connected";
-                    skytemptext.Text = " connected";
-                    skyqtext.Text = " connected";
-                    rainratetext.Text = " connected";
-                    cloudtext.Text = "  connected";
-                    dewpointtext.Text = "  connected";
+                    weatherconnected = true;
+                    try { pressuretext.Text = Math.Round(weather.Pressure, 2).ToString() + " hPa"; } catch { hpasense = false; }
+                    try { temptext.Text = Math.Round(weather.Temperature, 2).ToString() + " °C"; } catch { tempsense = false; }
+                    try { humidtext.Text = Math.Round(weather.Humidity, 2).ToString() + " %"; } catch { rhsense = false; }
+                    try { dewpointtext.Text = Math.Round(weather.DewPoint, 2).ToString() + " °C"; } catch { dewsense = false; }
+                    try { cloudtext.Text = Math.Round(weather.CloudCover, 2).ToString() + " %"; } catch { cloudsense = false; }
+                    try { skyqtext.Text = Math.Round(weather.SkyQuality, 2).ToString() + " "; } catch { sqsense = false; }
+                    try { skytemptext.Text = Math.Round(weather.SkyTemperature, 2).ToString() + " °C"; } catch { irsense = false; }
+                    try { rainratetext.Text = Math.Round(weather.RainRate, 2).ToString() + "mm/h"; } catch { rainsense = false; }
+                    if(!rhsense) humidtext.Text = " N/A";
+                    if(!hpasense) pressuretext.Text = " N/A";
+                    if (!tempsense) temptext.Text = " N/A";
+                    if (!irsense) skytemptext.Text = " N/A";
+                    if (!sqsense) skyqtext.Text = " N/A";
+                    if (!rainsense) rainratetext.Text = " N/A";
+                    if (!cloudsense) cloudtext.Text =  " N/A";
+                    if (!dewsense) dewpointtext.Text = " N/A";
                     btnConnectWeather.BackColor = Color.DarkGreen;
                     btnConnectWeather.ForeColor = Color.LightGray;
                     btnDiscWeather.ForeColor = Color.LightGray;
@@ -537,29 +558,26 @@ namespace MountControl
                     rainratetext.ForeColor = Color.LightGreen;
                     resetbtn.BackColor = Color.OrangeRed;
                     resetbtn.ForeColor = Color.LightGray;
-                    // default chart is SQM
-                    charttype = 5;
-                    btngraphsel.Text = "SQM";
-                    chart1.ChartAreas[0].AxisY.Minimum = 5;
-                    chart1.ChartAreas[0].AxisY.Maximum = 20;
-                    refreshweather();
+                    // default chart is temp
+                    charttype = 0;
+                    btngraphsel.Text = "temp C";
+                    chart1.ChartAreas[0].AxisY.Minimum = -5;
+                    chart1.ChartAreas[0].AxisY.Maximum = 25;
                 }
+
                 else
                 {
                     weatherconnected = false;
-                    humidtext.Text = " not connected";
-                    pressuretext.Text = " not connected";
-                    temptext.Text = " not connected";
-                    cloudtext.Text = " not connected";
-                    rainratetext.Text = " not connected";
-                    skyqtext.Text = " not connected";
-                    skytemptext.Text = " not connected";
-                    dewpointtext.Text = " not connected";
+                    humidtext.Text = " no connect";
+                    pressuretext.Text = " no connect";
+                    temptext.Text = " no connect";
+                    cloudtext.Text = " no connect";
+                    rainratetext.Text = " no connect";
+                    skyqtext.Text = " no connect";
+                    skytemptext.Text = " no connect";
+                    dewpointtext.Text = " no connect";
                 }
             }
-            //catch (PropertyNotImplementedException)
-            //{ 
-            //}
             catch
             {
                 // weather.Connected = false;  // old method
@@ -572,7 +590,7 @@ namespace MountControl
         {
             try
             {
-                if (mount.Connected)
+                if (mountconnected)
                 {
                     if (mount.AtPark)
                     {
@@ -620,7 +638,7 @@ namespace MountControl
 
             catch
             {
-                statusbox.Text = " comms error";
+                statusbox.Text = " mount error";
             }
         }
         // Polemaster moves to home and counterclockwise to select Polaris and another star
@@ -721,37 +739,40 @@ namespace MountControl
         }
         private void refreshweather()
         {
-           try
+            try
             {
-                if (weather.Connected)
+                if (weatherconnected)
                 {
-                    pressuretext.Text = Math.Round(weather.Pressure, 2).ToString() + " hPa";
-                    temptext.Text = Math.Round(weather.Temperature, 2).ToString() + " °C";
-                    humidtext.Text = Math.Round(weather.Humidity, 2).ToString() + " %";
-                    dewpointtext.Text = Math.Round(weather.DewPoint, 2).ToString() + " °C";
-                    cloudtext.Text = Math.Round(weather.CloudCover, 2).ToString() + " %";
-                    skyqtext.Text = Math.Round(weather.SkyQuality, 2).ToString() + " ";
-                    skytemptext.Text = Math.Round(weather.SkyTemperature, 2).ToString() + " °C";
-                    rainratetext.Text = Math.Round(weather.RainRate, 2).ToString() + "mm/h";
+                    if (hpasense) pressuretext.Text = Math.Round(weather.Pressure, 2).ToString() + " hPa";
+                    if (tempsense) temptext.Text = Math.Round(weather.Temperature, 2).ToString() + " °C";
+                    if (rhsense) humidtext.Text = Math.Round(weather.Humidity, 2).ToString() + " %";
+                    if (dewsense) dewpointtext.Text = Math.Round(weather.DewPoint, 2).ToString() + " °C";
+                    if (cloudsense) cloudtext.Text = Math.Round(weather.CloudCover, 2).ToString() + " %";
+                    if (sqsense) skyqtext.Text = Math.Round(weather.SkyQuality, 2).ToString() + " ";
+                    if (irsense) skytemptext.Text = Math.Round(weather.SkyTemperature, 2).ToString() + " °C";
+                    if (rainsense) rainratetext.Text = Math.Round(weather.RainRate, 2).ToString() + "mm/h";
                     // conditional text color to indicate problems
-                    if (weather.RainRate > 0.2) rainratetext.ForeColor = Color.Red;
+                    if (rainsense) 
+                    { if (weather.RainRate > 0.2) rainratetext.ForeColor = Color.Red; 
                     else rainratetext.ForeColor = Color.LightGreen;
-                    if (weather.CloudCover > 60) cloudtext.ForeColor = Color.Red;
+                    }
+                }
+                if (cloudsense)
+                { if (weather.CloudCover > 60) cloudtext.ForeColor = Color.Red;
                     else if (weather.CloudCover > 30) cloudtext.ForeColor = Color.Yellow;
                     else cloudtext.ForeColor = Color.LightGreen;
-                    if (weather.Humidity > 96) humidtext.ForeColor = Color.Red;
-                    else humidtext.ForeColor = Color.LightGreen;
-                    resetbtn.BackColor = Color.Black;
-                    ChartDataUpdate();
-                    ChartUpdate();
                 }
-            }
-            catch (Exception)
-            {
-                statusbox.AppendText(Environment.NewLine + "weather error");
-            }
-        }
+                if (rhsense)
+                { if (weather.Humidity > 96) humidtext.ForeColor = Color.Red;
+                    else humidtext.ForeColor = Color.LightGreen;
+                }
+                resetbtn.BackColor = Color.Black;
+                ChartDataUpdate();
+                ChartUpdate();
+                }
+            catch (NotImplementedException)   { }
            
+        }           
         // routine to change over the graph data source and axis and update
         private void graphselect(object sender, EventArgs e)
         {
@@ -822,25 +843,34 @@ namespace MountControl
             if ((samplecount < 3600) && (samplecount % 30 == 0)) //(every minute)
             {
                 index = ((int)((samplecount / 30.0) - (samplecount % 30)));
-                tempvalues[index] = weather.Temperature;
-                humidvalues[index] = weather.Humidity;
-                dewvalues[index] = weather.DewPoint;
-                cloudvalues[index] = weather.CloudCover;
-                if (weather.SkyQuality > 21) sqmvalues[index] = 21; // limit or it does not get shown
-                else if (weather.SkyQuality < 6) sqmvalues[index] = 6;
-                else sqmvalues[index] = weather.SkyQuality;
-                pressvalues[index] = weather.Pressure;
-                if (weather.SkyTemperature > 20) skyvalues[index] = 20; // limit or it does not get shown
-                else if (weather.SkyTemperature <-20) skyvalues[index] = -20; //limit or it does not get shown
-                else skyvalues[index] = weather.SkyTemperature;
-                if (weather.RainRate > 5) rainvalues[index] = 5;
-                else if (weather.RainRate == 0) rainvalues[index] = 0.01;
-                else rainvalues[index] = weather.RainRate; //limit or it does not get shown
+                if (tempsense) tempvalues[index] = weather.Temperature;
+                if (rhsense) humidvalues[index] = weather.Humidity;
+                if (dewsense) dewvalues[index] = weather.DewPoint;
+                if (hpasense) pressvalues[index] = weather.Pressure;
+                if (cloudsense) cloudvalues[index] = weather.CloudCover;
+                if (sqsense)
+                {
+                    if (weather.SkyQuality > 21) sqmvalues[index] = 21; // limit or it does not get shown
+                    else if (weather.SkyQuality < 6) sqmvalues[index] = 6;
+                    else sqmvalues[index] = weather.SkyQuality;
+                }
+                if (irsense)
+                {
+                    if (weather.SkyTemperature > 20) skyvalues[index] = 20; // limit or it does not get shown
+                    else if (weather.SkyTemperature < -20) skyvalues[index] = -20; //limit or it does not get shown
+                    else skyvalues[index] = weather.SkyTemperature;
+                }
+                if (rainsense)
+                {
+                    if (weather.RainRate > 5) rainvalues[index] = 5;
+                    else if (weather.RainRate == 0) rainvalues[index] = 0.01;
+                    else rainvalues[index] = weather.RainRate; //limit or it does not get shown
+                }
 
             }
             if ((samplecount >= 3600) && (samplecount % 30 == 0))
             {
-                for (int i = 0; i <119; i++)  // shift left
+                for (int i = 0; i < 119; i++)  // shift left
                 {
                     tempvalues[i] = tempvalues[i + 1];
                     humidvalues[i] = humidvalues[i + 1];
@@ -852,16 +882,16 @@ namespace MountControl
                     rainvalues[i] = rainvalues[i + 1];
                 }
                 // rhs value is current value
-                tempvalues[119] = weather.Temperature;
-                humidvalues[119] = weather.Humidity;
-                dewvalues[119] = weather.DewPoint;
-                cloudvalues[119] = weather.CloudCover;
-                sqmvalues[119] = weather.SkyQuality;
-                pressvalues[119] = weather.Pressure;
-                skyvalues[119] = weather.SkyTemperature;
-                rainvalues[119] = weather.RainRate;
+                if (tempsense) tempvalues[119] = weather.Temperature;
+                if (rhsense) humidvalues[119] = weather.Humidity;
+                if (dewsense) dewvalues[119] = weather.DewPoint;
+                if (cloudsense) cloudvalues[119] = weather.CloudCover;
+                if (sqsense) sqmvalues[119] = weather.SkyQuality;
+                if (hpasense) pressvalues[119] = weather.Pressure;
+                if (irsense) skyvalues[119] = weather.SkyTemperature;
+                if (rainsense) rainvalues[119] = weather.RainRate;
             }
-            switch(charttype) // copy applicable data into chart array
+            switch (charttype) // copy applicable data into chart array
             {
                 case 0:
                     for (int i = 0; i < 120; i++) chartvalues[i] = tempvalues[i];
@@ -883,12 +913,13 @@ namespace MountControl
                     break;
                 case 6:
                     for (int i = 0; i < 120; i++) chartvalues[i] = pressvalues[i];
-                    break;             
+                    break;
                 default:
                     for (int i = 0; i < 120; i++) chartvalues[i] = rainvalues[i];
                     break;
             }
         }
+
         // updates chart plot, according to the selected data source, does not display zero values.
         private void ChartUpdate()
         {
@@ -906,8 +937,8 @@ namespace MountControl
             {
                 if (weatherconnected)
                 {
-                    weather.Connected = false;   //disconnect weather sensors Ascom6
-                    //weather.Disconnect(); // Ascom 7
+                    //weather.Connected = false;   //disconnect weather sensors Ascom6
+                    weather.Disconnect(); // Ascom 7
                     weatherconnected = false;
                     humidtext.Text = " not connected";
                     pressuretext.Text = " not connected";
@@ -947,7 +978,7 @@ namespace MountControl
             }
             catch
             {
-                statusbox.Text = " comms error";
+                statusbox.Text = " west error";
             }
         }
         private void east(object sender, EventArgs e)
@@ -961,7 +992,7 @@ namespace MountControl
             }
             catch
             {
-                statusbox.Text = " comms error";
+                statusbox.Text = " east error";
             }
         }
 
@@ -974,7 +1005,7 @@ namespace MountControl
             }
             catch
             {
-                statusbox.Text = " comms error";
+                statusbox.Text = " south error";
             }
         }
         private void north(object sender, EventArgs e)
@@ -986,20 +1017,14 @@ namespace MountControl
             }
             catch
             {
-                statusbox.Text = " comms error";
+                statusbox.Text = " north error";
             }
         }
         private void status_updates(object sender, EventArgs e) // every 2 seconds
         {
-            try
-            {
-            refreshmount();
-            refreshweather();
-            }
-            catch
-            {
-                statusbox.Text = "  comms error";
-            }
+
+                if (mountconnected) refreshmount();
+                if (weatherconnected) refreshweather();       
         }
         // filewrite() saves configuration variables to MyDocuments/ASCOM/Mount/settings.txt
         private void filewrite()
@@ -1044,7 +1069,7 @@ namespace MountControl
         }
         internal void ReadProfile()  // read trim values from ASCOM profile for programming into device
         {
-            using (Profile driverProfile = new Profile())
+            using (ASCOM.Utilities.Profile driverProfile = new ASCOM.Utilities.Profile())
             {
                 string gain,offset,highT,SQMAdjust,RainRatioThreshold,SkyUL, SkyLL, humidtrim,temptrim,pressuretrim,buzzer;
                 driverProfile.DeviceType = "ObservingConditions";
