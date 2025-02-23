@@ -1,7 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="packages\ASCOM.AstrometryTools.2.0.9\build\ASCOM.AstrometryTools.props" Condition="Exists('packages\ASCOM.AstrometryTools.2.0.9\build\ASCOM.AstrometryTools.props')" />
-  <Import Project="packages\ASCOM.Exception.Library.7.0.1\build\ASCOM.Exception.Library.props" Condition="Exists('packages\ASCOM.Exception.Library.7.0.1\build\ASCOM.Exception.Library.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -57,61 +55,14 @@
     <ApplicationIcon>WD20.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ASCOM.Alpaca, Version=2.0.9.0, Culture=neutral, PublicKeyToken=565de7938946fba7, processorArchitecture=MSIL">
-      <HintPath>packages\ASCOM.Alpaca.Components.2.0.9\lib\netstandard2.0\ASCOM.Alpaca.dll</HintPath>
-    </Reference>
-    <Reference Include="ASCOM.Alpaca.Device, Version=2.0.9.0, Culture=neutral, PublicKeyToken=565de7938946fba7, processorArchitecture=MSIL">
-      <HintPath>packages\ASCOM.Alpaca.Device.2.0.9\lib\netstandard2.0\ASCOM.Alpaca.Device.dll</HintPath>
-    </Reference>
-    <Reference Include="ASCOM.Astrometry, Version=6.0.0.0, Culture=neutral, PublicKeyToken=565de7938946fba7, processorArchitecture=MSIL">
-      <HintPath>packages\ASCOM7.BuildEnvironment.Support.7.0.0\lib\net40\ASCOM.Astrometry.dll</HintPath>
-    </Reference>
-    <Reference Include="ASCOM.AstrometryTools, Version=2.0.9.0, Culture=neutral, PublicKeyToken=565de7938946fba7, processorArchitecture=MSIL">
-      <HintPath>packages\ASCOM.AstrometryTools.2.0.9\lib\netstandard2.0\ASCOM.AstrometryTools.dll</HintPath>
-    </Reference>
-    <Reference Include="ASCOM.Attributes, Version=6.0.0.0, Culture=neutral, PublicKeyToken=565de7938946fba7, processorArchitecture=MSIL">
-      <HintPath>packages\ASCOM7.BuildEnvironment.Support.7.0.0\lib\net40\ASCOM.Attributes.dll</HintPath>
-    </Reference>
-    <Reference Include="ASCOM.Com, Version=2.0.9.0, Culture=neutral, PublicKeyToken=565de7938946fba7, processorArchitecture=MSIL">
-      <HintPath>packages\ASCOM.Com.Components.2.0.9\lib\netstandard2.0\ASCOM.Com.dll</HintPath>
-    </Reference>
-    <Reference Include="ASCOM.Com.ChooserSA, Version=2.0.9.0, Culture=neutral, PublicKeyToken=565de7938946fba7, processorArchitecture=MSIL">
-      <HintPath>packages\ASCOM.Com.ChooserSA.2.0.9\lib\net472\ASCOM.Com.ChooserSA.dll</HintPath>
-    </Reference>
-    <Reference Include="ASCOM.Common, Version=2.0.9.0, Culture=neutral, PublicKeyToken=565de7938946fba7, processorArchitecture=MSIL">
-      <HintPath>packages\ASCOM.Common.Components.2.0.9\lib\netstandard2.0\ASCOM.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="ASCOM.Controls, Version=6.0.0.0, Culture=neutral, PublicKeyToken=565de7938946fba7, processorArchitecture=MSIL">
-      <HintPath>packages\ASCOM7.BuildEnvironment.Support.7.0.0\lib\net40\ASCOM.Controls.dll</HintPath>
-    </Reference>
-    <Reference Include="ASCOM.DeviceInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=565de7938946fba7, processorArchitecture=MSIL">
-      <HintPath>packages\ASCOM7.BuildEnvironment.Support.7.0.0\lib\net40\ASCOM.DeviceInterfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="ASCOM.DriverAccess, Version=6.0.0.0, Culture=neutral, PublicKeyToken=565de7938946fba7, processorArchitecture=MSIL">
-      <HintPath>packages\ASCOM7.BuildEnvironment.Support.7.0.0\lib\net40\ASCOM.DriverAccess.dll</HintPath>
-    </Reference>
-    <Reference Include="ASCOM.Exceptions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=565de7938946fba7, processorArchitecture=MSIL">
-      <HintPath>packages\ASCOM.Exception.Library.7.0.1\lib\net472\ASCOM.Exceptions.dll</HintPath>
-    </Reference>
-    <Reference Include="ASCOM.Interfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=565de7938946fba7, processorArchitecture=MSIL">
-      <HintPath>packages\ASCOM7.BuildEnvironment.Support.7.0.0\lib\net40\ASCOM.Interfaces.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="ASCOM.Internal.Extensions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=565de7938946fba7, processorArchitecture=MSIL">
-      <HintPath>packages\ASCOM7.BuildEnvironment.Support.7.0.0\lib\net40\ASCOM.Internal.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="ASCOM.SettingsProvider, Version=6.0.0.0, Culture=neutral, PublicKeyToken=565de7938946fba7, processorArchitecture=MSIL">
-      <HintPath>packages\ASCOM7.BuildEnvironment.Support.7.0.0\lib\net40\ASCOM.SettingsProvider.dll</HintPath>
-    </Reference>
-    <Reference Include="ASCOM.Tools, Version=2.0.9.0, Culture=neutral, PublicKeyToken=565de7938946fba7, processorArchitecture=MSIL">
-      <HintPath>packages\ASCOM.Tools.2.0.9\lib\netstandard2.0\ASCOM.Tools.dll</HintPath>
-    </Reference>
-    <Reference Include="ASCOM.Utilities, Version=6.0.0.0, Culture=neutral, PublicKeyToken=565de7938946fba7, processorArchitecture=MSIL">
-      <HintPath>packages\ASCOM7.BuildEnvironment.Support.7.0.0\lib\net40\ASCOM.Utilities.dll</HintPath>
-    </Reference>
-    <Reference Include="BuildEnvironment, Version=0.0.0.0, Culture=neutral, PublicKeyToken=565de7938946fba7, processorArchitecture=MSIL">
-      <HintPath>packages\ASCOM7.BuildEnvironment.Support.7.0.0\lib\net40\BuildEnvironment.dll</HintPath>
-    </Reference>
+    <Reference Include="ASCOM.Astrometry, Version=6.0.0.0, Culture=neutral, PublicKeyToken=565de7938946fba7, processorArchitecture=MSIL" />
+    <Reference Include="ASCOM.Controls, Version=6.0.0.0, Culture=neutral, PublicKeyToken=565de7938946fba7, processorArchitecture=MSIL" />
+    <Reference Include="ASCOM.DeviceInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=565de7938946fba7, processorArchitecture=MSIL" />
+    <Reference Include="ASCOM.DriverAccess, Version=6.0.0.0, Culture=neutral, PublicKeyToken=565de7938946fba7, processorArchitecture=MSIL" />
+    <Reference Include="ASCOM.Exceptions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=565de7938946fba7, processorArchitecture=MSIL" />
+    <Reference Include="ASCOM.Internal.Extensions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=565de7938946fba7, processorArchitecture=MSIL" />
+    <Reference Include="ASCOM.SettingsProvider, Version=6.0.0.0, Culture=neutral, PublicKeyToken=565de7938946fba7, processorArchitecture=MSIL" />
+    <Reference Include="ASCOM.Utilities, Version=6.0.0.0, Culture=neutral, PublicKeyToken=565de7938946fba7, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
@@ -147,8 +98,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="install.ps1" />
-    <None Include="JPLEPH" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -180,13 +129,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('packages\ASCOM.Exception.Library.7.0.1\build\ASCOM.Exception.Library.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\ASCOM.Exception.Library.7.0.1\build\ASCOM.Exception.Library.props'))" />
-    <Error Condition="!Exists('packages\ASCOM.AstrometryTools.2.0.9\build\ASCOM.AstrometryTools.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\ASCOM.AstrometryTools.2.0.9\build\ASCOM.AstrometryTools.props'))" />
-  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
