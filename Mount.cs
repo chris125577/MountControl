@@ -1,12 +1,14 @@
 ﻿
 using ASCOM.DriverAccess;
 using ASCOM.Utilities;
+using ASCOM.DeviceInterface;
+using ASCOM;
 using System;
 using System.Drawing;
 using System.IO;
-using System.Windows.Forms;
-using System.Threading;
 using System.Linq;
+using System.Threading;
+using System.Windows.Forms;
 
 
 
@@ -76,6 +78,8 @@ namespace MountControl
             rhsense = true;
             cloudsense = true;
             hpasense = true;
+            irsense = true;
+            sqsense = true;
 
             // initialise data and status fields
             statusbox.Text = " not connected";
@@ -527,6 +531,7 @@ namespace MountControl
                 {
                     weather = new ObservingConditions(weatherId);
                     //weather.Connect();   // asynch method
+                    //Thread.Sleep(2000);
                     weather.Connected = true;
                     weatherconnected = true;
                     try { pressuretext.Text = Math.Round(weather.Pressure, 2).ToString() + " hPa"; } catch { hpasense = false; }
@@ -772,7 +777,7 @@ namespace MountControl
                 ChartDataUpdate();
                 ChartUpdate();
             }
-            catch (NotImplementedException) { }
+            catch  { }
 
         }
         // routine to change over the graph data source and axis and update
